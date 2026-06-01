@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCP2 | Portal do Professor</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: '#252E7F', // Azul Institucional
+                        secondary: '#E53935', // Vermelho
+                        darkbg: '#0f172a',
+                        darkcard: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .dark .glass { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .tab-content { display: none; animation: fadeIn 0.4s ease-in-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        .dark ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-darkbg dark:text-gray-200 transition-colors duration-300">
+
+    <div id="landing-page" class="min-h-screen flex flex-col">
+        <header class="glass fixed w-full top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-xl shadow-lg">C2</div>
+                    <span class="font-bold text-lg md:text-xl text-primary dark:text-white tracking-tight">Centro Cultural Pedro II</span>
+                </div>
+                <nav class="hidden lg:flex gap-8 font-medium text-gray-600 dark:text-gray-300">
+                    <a href="#" class="hover:text-primary transition">A Instituição</a>
+                    <a href="#" class="hover:text-primary transition">Unidades</a>
+                    <a href="#" class="hover:text-primary transition">Contato</a>
+                </nav>
+                <button onclick="focarNoLogin()" class="bg-secondary hover:bg-red-700 text-white px-4 md:px-6 py-2.5 rounded-full text-sm md:text-base font-medium transition-all shadow-md hover:shadow-lg">
+                    Acessar Portal <i class="fa-solid fa-arrow-right ml-1 md:ml-2"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-grow flex items-center pt-28 pb-12 bg-gradient-to-br from-blue-50 to-white dark:from-darkbg dark:to-gray-900 relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-primary opacity-5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-secondary opacity-5 rounded-full blur-3xl"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                <div class="text-center lg:text-left flex flex-col items-center lg:items-start">
+                    <span class="text-secondary font-bold tracking-wider uppercase text-sm mb-4 block">Bem-vindo ao Futuro da Educação</span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-6">
+                        Portal Interno <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">do Professor</span>
+                    </h1>
+                    <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0">
+                        Autenticação segura via Google Workspace para o corpo docente do Centro Cultural Pedro II.
+                    </p>
+                    
+                    <div id="login-container" class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col items-center gap-4 w-full max-w-sm">
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">Acesso Restrito</span>
+                        
+                        <div id="google-sso-btn" class="w-full flex justify-center"></div>
+                        
+                        <button onclick="enterAsDemo()" class="text-xs text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-blue-400 underline transition mt-2">
+                            Entrar no modo de demonstração (Sem SSO)
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="glass p-6 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-primary rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-school"></i></div>
+                        <h3 class="font-bold text-gray-900 dark:text-white">Mais de 23 unidades</h3>
+                        <p class="text-sm text-gray-500 mt-1">Estrutura completa para atender nossos alunos.</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform">
+                        <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 text-secondary rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-globe"></i></div>
+                        <h3 class="font-bold text-gray-900 dark:text-white">A MAIOR da Zona Oeste</h3>
+                        <p class="text-sm text-gray-500 mt-1">Liderança absoluta em rede de ensino.</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h3 class="font-bold text-gray-900 dark:text-white">Educação Completa</h3>
+                        <p class="text-sm text-gray-500 mt-1">Da Educação Infantil ao Ensino Médio.</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform">
+                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-xl flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-star"></i></div>
+                        <h3 class="font-bold text-gray-900 dark:text-white">Ensino de Excelência</h3>
+                        <p class="text-sm text-gray-500 mt-1">Foco no resultado e na formação humana.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="bg-white dark:bg-darkcard border-t border-gray-200 dark:border-gray-800 py-6 text-center text-sm text-gray-500">
+            <p>&copy; 2026 Centro Cultural Pedro II (CCP2). Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+
+    <div id="dashboard-app" class="hidden h-screen flex overflow-hidden bg-gray-50 dark:bg-darkbg relative">
+        <div id="sidebar-overlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-black/50 z-20 md:hidden transition-opacity duration-300"></div>
+
+        <aside id="sidebar" class="w-64 bg-primary text-white flex flex-col fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 md:static transition-transform duration-300 ease-in-out z-30 shadow-xl h-full">
+            <div class="h-20 flex items-center justify-between px-6 border-b border-blue-800">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded bg-white text-primary flex items-center justify-center font-bold text-lg mr-3">C2</div>
+                    <span class="font-bold text-lg tracking-wide">Portal CCP2</span>
+                </div>
+                <button onclick="toggleSidebar()" class="text-white text-xl md:hidden focus:outline-none">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <nav class="flex-1 py-6 px-3 space-y-1 overflow-y-auto">
+                <button onclick="switchTab('inicio')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left bg-blue-800/50 text-white font-medium transition tab-btn" data-target="inicio">
+                    <i class="fa-solid fa-house w-5 text-center"></i> Dashboard
+                </button>
+                <button onclick="switchTab('solicitacoes')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-blue-200 hover:bg-blue-800/30 hover:text-white transition tab-btn" data-target="solicitacoes">
+                    <i class="fa-solid fa-file-signature w-5 text-center"></i> Solicitações
+                </button>
+                <button onclick="switchTab('links')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-blue-200 hover:bg-blue-800/30 hover:text-white transition tab-btn" data-target="links">
+                    <i class="fa-solid fa-link w-5 text-center"></i> Links Rápidos
+                </button>
+                <button onclick="switchTab('calendario')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-blue-200 hover:bg-blue-800/30 hover:text-white transition tab-btn" data-target="calendario">
+                    <i class="fa-solid fa-calendar-days w-5 text-center"></i> Calendário
+                </button>
+                <button onclick="switchTab('biblioteca')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-blue-200 hover:bg-blue-800/30 hover:text-white transition tab-btn" data-target="biblioteca">
+                    <i class="fa-solid fa-folder-open w-5 text-center"></i> Biblioteca
+                </button>
+            </nav>
+
+            <div class="p-4 border-t border-blue-800">
+                <div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-900/50 mb-3">
+                    <img id="user-avatar" src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-blue-400 object-cover">
+                    <div class="truncate">
+                        <p id="user-name" class="text-sm font-semibold truncate">Prof. Carlos</p>
+                        <p id="user-email" class="text-xs text-blue-300 truncate">Matemática - EM</p>
+                    </div>
+                </div>
+                <button onclick="toggleDarkMode()" class="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm text-blue-200 hover:bg-blue-800/30 transition">
+                    <i class="fa-solid fa-moon"></i> Modo Escuro
+                </button>
+                <button onclick="exitPortal()" class="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm text-red-300 hover:bg-red-900/50 hover:text-red-200 transition">
+                    <i class="fa-solid fa-right-from-bracket"></i> Sair
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col h-screen overflow-hidden">
+            <header class="h-20 bg-white dark:bg-darkcard border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-4 md:px-8 z-10 shadow-sm flex-shrink-0">
+                <div class="flex items-center">
+                    <button onclick="toggleSidebar()" class="p-2 mr-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 md:hidden focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                    <h2 id="page-title" class="text-lg md:text-xl font-semibold text-gray-800 dark:text-white truncate">Visão Geral</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative cursor-pointer p-2">
+                        <i class="fa-regular fa-bell text-gray-500 text-xl hover:text-primary transition"></i>
+                        <span class="absolute top-1 right-1 bg-secondary text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">3</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto p-4 md:p-8 relative">
+                
+                <div id="inicio" class="tab-content active">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white dark:bg-darkcard p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 border-l-4 border-l-primary">
+                            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">Aulas Hoje</p>
+                            <h3 class="text-3xl font-bold text-gray-800 dark:text-white">05</h3>
+                        </div>
+                        <div class="bg-white dark:bg-darkcard p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 border-l-4 border-l-secondary">
+                            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">Tarefas Pendentes</p>
+                            <h3 class="text-3xl font-bold text-gray-800 dark:text-white">12</h3>
+                        </div>
+                        <div class="bg-white dark:bg-darkcard p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 border-l-4 border-l-green-500 sm:col-span-2 md:col-span-1">
+                            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">Próxima Avaliação</p>
+                            <h3 class="text-base md:text-lg font-bold text-gray-800 dark:text-white mt-2"><i class="fa-regular fa-calendar mr-2 text-green-500"></i>15 de Junho</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-darkcard rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Avisos Recentes da Coordenação</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200">
+                                <i class="fa-solid fa-circle-info mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-semibold">Reunião Pedagógica - Unidade Brisa</h4>
+                                    <p class="text-sm opacity-80 mt-1">Não esqueçam de trazer os diários preenchidos para a reunião desta sexta-feira.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="solicitacoes" class="tab-content">
+                    <div class="max-w-3xl mx-auto bg-white dark:bg-darkcard rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-4 md:p-8">
+                        <p class="text-gray-500 dark:text-gray-400 text-sm md:text-base mb-6">Preencha o formulário inteligente abaixo para abrir um chamado. O sistema direcionará sua solicitação automaticamente para o e-mail do setor responsável da respectiva unidade.</p>
+                        
+                        <form id="form-solicitacao" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Unidade</label>
+                                    <select id="form-unidade" onchange="updateTargetEmail()" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:text-white font-medium text-sm md:text-base" required>
+                                        <option value="" disabled selected>Selecione a Unidade...</option>
+                                        <option value="brisa">Brisa</option>
+                                        <option value="santissimo">Santíssimo</option>
+                                        <option value="santa_cruz">Santa Cruz</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Segmento</label>
+                                    <select id="form-segmento" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:text-white font-medium text-sm md:text-base" required>
+                                        <option value="" disabled selected>Selecione o Segmento...</option>
+                                        <option value="infantil_iniciais">Educação Infantil / Séries Iniciais</option>
+                                        <option value="finais_medio">Séries Finais / Ensino Médio</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Tipo de Solicitação</label>
+                                <select id="form-tipo" onchange="toggleFormFields(); updateTargetEmail();" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:text-white font-medium text-sm md:text-base" required>
+                                    <option value="" disabled selected>Selecione o tipo de chamado...</option>
+                                    <option value="material">Solicitação Material</option>
+                                    <option value="administrativa">Solicitação Administrativa</option>
+                                    <option value="pedagogica">Solicitação Pedagógica</option>
+                                </select>
+                            </div>
+
+                            <div id="campos-material" class="hidden space-y-4 bg-gray-50 dark:bg-gray-800/40 p-4 md:p-5 rounded-2xl border border-gray-100 dark:border-gray-800/80">
+                                <h4 class="text-sm font-bold text-primary dark:text-blue-400 uppercase tracking-wider mb-2"><i class="fa-solid fa-box-open mr-2"></i> Detalhes do Pedido de Material</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-500 mb-1">Nome Completo</label>
+                                        <input type="text" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-500 mb-1">Série / Turma</label>
+                                        <input type="text" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-500 mb-1">Evento / Atividade Relacionada</label>
+                                    <input type="text" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ex: Feira de Ciências, Aula Prática...">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-500 mb-1">Material Necessário e Quantidade</label>
+                                    <textarea rows="3" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Descreva detalhadamente o material que precisa..."></textarea>
+                                </div>
+                            </div>
+
+                            <div id="campos-administrativa" class="hidden space-y-4 bg-gray-50 dark:bg-gray-800/40 p-4 md:p-5 rounded-2xl border border-gray-100 dark:border-gray-800/80">
+                                <h4 class="text-sm font-bold text-primary dark:text-blue-400 uppercase tracking-wider mb-2"><i class="fa-solid fa-file-invoice mr-2"></i> Detalhes da Solicitação Administrativa</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-500 mb-1">Nome Completo</label>
+                                        <input type="text" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-500 mb-1">Função / Cargo</label>
+                                        <input type="text" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ex: Professor Titular, Substituto...">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-500 mb-1">Descrição da Solicitação</label>
+                                    <textarea rows="4" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Descreva sua demanda (declarações, ajustes de ponto, folha, etc)..."></textarea>
+                                </div>
+                            </div>
+
+                            <div id="campos-pedagogica" class="hidden space-y-4 bg-gray-50 dark:bg-gray-800/40 p-4 md:p-5 rounded-2xl border border-gray-100 dark:border-gray-800/80">
+                                <h4 class="text-sm font-bold text-primary dark:text-blue-400 uppercase tracking-wider mb-2"><i class="fa-solid fa-chalkboard-user mr-2"></i> Detalhes da Solicitação Pedagógica</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-500 mb-1">Nome Completo</label>
+                                        <input type="text" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-500 mb-1">Disciplina</label>
+                                        <input type="text" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ex: Matemática, História...">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-500 mb-1">Descrição da Solicitação Pedagógica</label>
+                                    <textarea rows="4" class="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard dark:text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ex: Suporte com aluno, agendamento de laboratório, projeto interdisciplinar..."></textarea>
+                                </div>
+                            </div>
+
+                            <div id="indicador-email" class="hidden p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 flex items-center gap-3">
+                                <div class="text-blue-600 dark:text-blue-400 text-lg flex-shrink-0"><i class="fa-solid fa-paper-plane"></i></div>
+                                <div class="text-xs md:text-sm text-blue-800 dark:text-blue-300 break-all">
+                                    Esta solicitação será disparada para: <span id="target-email-display" class="font-bold underline text-primary dark:text-blue-400">diretoria@ccp2.com</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-sm md:text-base">
+                                <i class="fa-solid fa-paper-plane"></i> Enviar Solicitação
+                            </button>
+                        </form>
+
+                        <div id="sucesso-modal" class="hidden mt-6 p-6 rounded-2xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-center animate-pulse">
+                            <div class="w-12 h-12 bg-green-100 dark:bg-green-900/40 text-green-600 rounded-full flex items-center justify-center text-xl mx-auto mb-3">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h4 class="font-bold text-green-900 dark:text-green-300 text-base md:text-lg">Solicitação Enviada com Sucesso!</h4>
+                            <p class="text-xs md:text-sm text-green-700 dark:text-green-400 mt-1">O protótipo simulou o envio do e-mail perfeitamente para o setor responsável.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="links" class="tab-content">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:grid-cols-3 md:gap-6">
+                        <a href="#" class="bg-white dark:bg-darkcard p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center gap-4 hover:-translate-y-2 hover:shadow-lg transition-all duration-300 group">
+                            <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-50 dark:bg-gray-800 flex items-center justify-center text-xl md:text-2xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-solid fa-book-open-reader"></i></div>
+                            <span class="font-semibold text-xs md:text-sm text-gray-800 dark:text-white text-center">Portal SAS</span>
+                        </a>
+                        <a href="#" class="bg-white dark:bg-darkcard p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center gap-4 hover:-translate-y-2 hover:shadow-lg transition-all duration-300 group">
+                            <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-green-50 dark:bg-gray-800 flex items-center justify-center text-xl md:text-2xl text-green-600 group-hover:bg-green-600 group-hover:text-white transition"><i class="fa-solid fa-mobile-screen"></i></div>
+                            <span class="font-semibold text-xs md:text-sm text-gray-800 dark:text-white text-center">Agenda Edu</span>
+                        </a>
+                        <a href="#" class="bg-white dark:bg-darkcard p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center gap-4 hover:-translate-y-2 hover:shadow-lg transition-all duration-300 group">
+                            <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-50 dark:bg-gray-800 flex items-center justify-center text-xl md:text-2xl text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition"><i class="fa-solid fa-language"></i></div>
+                            <span class="font-semibold text-xs md:text-sm text-gray-800 dark:text-white text-center">Portal PES</span>
+                        </a>
+                        <a href="#" class="bg-white dark:bg-darkcard p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center gap-4 hover:-translate-y-2 hover:shadow-lg transition-all duration-300 group">
+                            <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-50 dark:bg-gray-800 flex items-center justify-center text-xl md:text-2xl text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white transition"><i class="fa-solid fa-chalkboard"></i></div>
+                            <span class="font-semibold text-xs md:text-sm text-gray-800 dark:text-white text-center text-sm">Google Classroom</span>
+                        </a>
+                        <a href="#" class="bg-white dark:bg-darkcard p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center gap-4 hover:-translate-y-2 hover:shadow-lg transition-all duration-300 group">
+                            <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-50 dark:bg-gray-800 flex items-center justify-center text-xl md:text-2xl text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition"><i class="fa-brands fa-google-drive"></i></div>
+                            <span class="font-semibold text-xs md:text-sm text-gray-800 dark:text-white text-center">Google Drive</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="calendario" class="tab-content">
+                    <div class="bg-white dark:bg-darkcard rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+                        <div class="p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-800/50">
+                            <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white">Maio 2026</h3>
+                            <div class="flex gap-2">
+                                <button class="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700"><i class="fa-solid fa-chevron-left"></i></button>
+                                <button class="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700"><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <div class="min-w-[600px] grid grid-cols-7 gap-px bg-gray-200 dark:bg-gray-700">
+                                <div class="bg-white dark:bg-darkcard p-2 text-center text-xs font-semibold text-gray-500 uppercase">Dom</div>
+                                <div class="bg-white dark:bg-darkcard p-2 text-center text-xs font-semibold text-gray-500 uppercase">Seg</div>
+                                <div class="bg-white dark:bg-darkcard p-2 text-center text-xs font-semibold text-gray-500 uppercase">Ter</div>
+                                <div class="bg-white dark:bg-darkcard p-2 text-center text-xs font-semibold text-gray-500 uppercase">Qua</div>
+                                <div class="bg-white dark:bg-darkcard p-2 text-center text-xs font-semibold text-gray-500 uppercase">Qui</div>
+                                <div class="bg-white dark:bg-darkcard p-2 text-center text-xs font-semibold text-gray-500 uppercase">Sex</div>
+                                <div class="bg-white dark:bg-darkcard p-2 text-center text-xs font-semibold text-gray-500 uppercase">Sáb</div>
+                                
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 opacity-50 text-xs">26</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 opacity-50 text-xs">27</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 opacity-50 text-xs">28</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 opacity-50 text-xs">29</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 opacity-50 text-xs">30</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 text-xs"><span class="font-bold">1</span><div class="mt-1 text-[10px] bg-red-100 text-red-800 p-1 rounded">Feriado</div></div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 text-xs">2</div>
+                                
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 text-xs">3</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 text-xs">4</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 text-xs">5</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 text-xs"><span class="font-bold text-primary">6</span><div class="mt-1 text-[10px] bg-blue-100 text-blue-800 p-1 rounded">Semana Pedagógica</div></div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 text-xs">7</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 text-xs">8</div>
+                                <div class="bg-white dark:bg-darkcard min-h-[80px] p-2 text-xs">9</div>
+                                
+                                <div class="bg-white dark:bg-darkcard min-h-[60px] p-2 col-span-7 flex items-center justify-center text-gray-400 text-xs italic">
+                                    Arraste para o lado se necessário para ver a grade inteira...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="biblioteca" class="tab-content">
+                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                        <div class="flex-1 relative">
+                            <i class="fa-solid fa-search absolute left-4 top-3 text-gray-400"></i>
+                            <input type="text" placeholder="Buscar modelos de provas, documentos..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard focus:outline-none focus:ring-2 focus:ring-primary dark:text-white text-sm">
+                        </div>
+                        <div class="grid grid-cols-2 sm:flex gap-2">
+                            <select class="px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard focus:outline-none dark:text-white text-xs md:text-sm">
+                                <option>Todos os Segmentos</option>
+                                <option>Infantil</option>
+                                <option>Fundamental I</option>
+                                <option>Fundamental II</option>
+                                <option>Ensino Médio</option>
+                            </select>
+                            <select class="px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkcard focus:outline-none dark:text-white text-xs md:text-sm">
+                                <option>Categorias</option>
+                                <option>Modelos de Prova</option>
+                                <option>Atividades</option>
+                                <option>Circulares</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-darkcard rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse min-w-[500px]">
+                                <thead>
+                                    <tr class="bg-gray-50 dark:bg-gray-800/50 text-gray-500 dark:text-gray-400 text-xs md:text-sm">
+                                        <th class="p-4 font-medium">Nome do Arquivo</th>
+                                        <th class="p-4 font-medium">Categoria</th>
+                                        <th class="p-4 font-medium">Data</th>
+                                        <th class="p-4 font-medium text-right">Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-100 dark:divide-gray-800 text-xs md:text-sm text-gray-700 dark:text-gray-300">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition">
+                                        <td class="p-4 flex items-center gap-3"><i class="fa-solid fa-file-word text-blue-600 text-lg flex-shrink-0"></i> Cabeçalho_Padrão_Provas_2026.docx</td>
+                                        <td class="p-4">Modelos</td>
+                                        <td class="p-4">10/Fev/2026</td>
+                                        <td class="p-4 text-right"><button class="text-primary dark:text-blue-400 hover:underline font-medium"><i class="fa-solid fa-download"></i> Baixar</button></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition">
+                                        <td class="p-4 flex items-center gap-3"><i class="fa-solid fa-file-pdf text-red-600 text-lg flex-shrink-0"></i> Diretrizes_Pedagogicas_Brisa.pdf</td>
+                                        <td class="p-4">Documentos</td>
+                                        <td class="p-4">05/Fev/2026</td>
+                                        <td class="p-4 text-right"><button class="text-primary dark:text-blue-400 hover:underline font-medium"><i class="fa-solid fa-download"></i> Baixar</button></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition">
+                                        <td class="p-4 flex items-center gap-3"><i class="fa-solid fa-file-excel text-green-600 text-lg flex-shrink-0"></i> Planilha_Notas_Bimestral.xlsx</td>
+                                        <td class="p-4">Testes/Atividades</td>
+                                        <td class="p-4">12/Fev/2026</td>
+                                        <td class="p-4 text-right"><button class="text-primary dark:text-blue-400 hover:underline font-medium"><i class="fa-solid fa-download"></i> Baixar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800 text-center text-sm text-gray-500 flex flex-col items-center justify-center">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-6 h-6 rounded bg-primary text-white flex items-center justify-center font-bold text-[10px]">C2</div>
+                        <span class="font-semibold text-primary dark:text-white">Centro Cultural Pedro II</span>
+                    </div>
+                    <p class="text-xs md:text-sm">"Ensino de Excelência da Educação Infantil ao Ensino Médio"</p>
+                    <div class="flex gap-4 mt-3 text-base md:text-lg">
+                        <a href="#" class="hover:text-primary transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // CONFIGURAÇÃO DO GOOGLE SIGN-IN (SSO)
+        window.onload = function () {
+            // Inicializa a API do Google
+            google.accounts.id.initialize({
+                // SUBSTITUA PELA SUA CLIENT ID ABAIXO:
+                client_id: "311519596922-t4q891vdfdk4ettk126fo0vuffgdr8su.apps.googleusercontent.com", 
+                callback: handleCredentialResponse,
+                context: "signin",
+                ux_mode: "popup"
+            });
+
+            // Renderiza o Botão Nativo e Seguro do Google
+            google.accounts.id.renderButton(
+                document.getElementById("google-sso-btn"),
+                { 
+                    theme: "outline", 
+                    size: "large", 
+                    type: "standard",
+                    shape: "pill",
+                    text: "signin_with",
+                    logo_alignment: "left",
+                    width: "280"
+                }
+            );
+        };
+
+        // Função auxiliar para decodificar o token JWT do Google nativamente no Frontend
+        function parseJwt(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+                return '%' + ('0' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+        // Callback disparado quando o login do Google é efetuado
+        function handleCredentialResponse(response) {
+            try {
+                // Decodifica os dados públicos retornados pelo Google
+                const userData = parseJwt(response.credential);
+                const emailLogado = userData.email;
+
+                // VALIDÇÃO OBRIGATÓRIA DE DOMÍNIO INSTIUCIONAL
+                if (emailLogado.endsWith('@ccp2.com.br')) {
+                    // Preenche dinamicamente a Sidebar do Dashboard com os dados reais do Google
+                    document.getElementById('user-name').innerText = userData.name;
+                    document.getElementById('user-email').innerText = userData.email;
+                    document.getElementById('user-avatar').src = userData.picture;
+
+                    // Avança para o Dashboard
+                    enterPortal();
+                } else {
+                    // Alerta caso use um Gmail pessoal ou de outra organização
+                    alert("Acesso Negado!\n\nEste portal é exclusivo para professores da rede CCP2.\nO e-mail '" + emailLogado + "' não possui permissão de acesso.");
+                    google.accounts.id.disableAutoSelect(); // Desativa login automático para permitir nova tentativa
+                }
+            } catch (error) {
+                console.error("Erro no processamento do login:", error);
+                alert("Ocorreu um erro ao processar o login do Google.");
+            }
+        }
+
+        // Função de escape para apresentação do protótipo (Entrar sem SSO para testes ágeis)
+        function enterAsDemo() {
+            document.getElementById('user-name').innerText = "Prof. Demonstrativo (CCP2)";
+            document.getElementById('user-email').innerText = "professor.teste@ccp2.com.br";
+            document.getElementById('user-avatar').src = "https://i.pravatar.cc/150?img=68";
+            enterPortal();
+        }
+
+        function focarNoLogin() {
+            document.getElementById('login-container').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('login-container').classList.add('ring-2', 'ring-secondary');
+            setTimeout(() => {
+                document.getElementById('login-container').classList.remove('ring-2', 'ring-secondary');
+            }, 2000);
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        function enterPortal() {
+            document.getElementById('landing-page').classList.add('hidden');
+            const dash = document.getElementById('dashboard-app');
+            dash.classList.remove('hidden');
+            dash.style.opacity = 0;
+            setTimeout(() => {
+                dash.style.transition = 'opacity 0.5s ease';
+                dash.style.opacity = 1;
+            }, 50);
+        }
+
+        function exitPortal() {
+            document.getElementById('dashboard-app').classList.add('hidden');
+            document.getElementById('landing-page').classList.remove('hidden');
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.add('hidden');
+            // Desloga da sessão visual do Google
+            if (typeof google !== 'undefined') {
+                google.accounts.id.disableAutoSelect();
+            }
+        }
+
+        const titles = {
+            'inicio': 'Visão Geral do Professor',
+            'solicitacoes': 'Central de Solicitações Inteligente',
+            'links': 'Plataformas e Links Rápidos',
+            'calendario': 'Calendário Escolar 2026',
+            'biblioteca': 'Biblioteca de Arquivos Pedagógicos'
+        };
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-blue-800/50', 'text-white');
+                el.classList.add('text-blue-200');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            const activeBtn = document.querySelector(`.tab-btn[data-target="${tabId}"]`);
+            activeBtn.classList.add('bg-blue-800/50', 'text-white');
+            activeBtn.classList.remove('text-blue-200');
+            document.getElementById('page-title').innerText = titles[tabId];
+
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar.classList.contains('-translate-x-full') && window.innerWidth < 768) {
+                toggleSidebar();
+            }
+        }
+
+        function toggleFormFields() {
+            const tipo = document.getElementById('form-tipo').value;
+            document.getElementById('campos-material').classList.add('hidden');
+            document.getElementById('campos-administrativa').classList.add('hidden');
+            document.getElementById('campos-pedagogica').classList.add('hidden');
+            
+            if (tipo === 'material') {
+                document.getElementById('campos-material').classList.remove('hidden');
+            } else if (tipo === 'administrativa') {
+                document.getElementById('campos-administrativa').classList.remove('hidden');
+            } else if (tipo === 'pedagogica') {
+                document.getElementById('campos-pedagogica').classList.remove('hidden');
+            }
+        }
+
+        function updateTargetEmail() {
+            const unidade = document.getElementById('form-unidade').value;
+            const tipo = document.getElementById('form-tipo').value;
+            const indicador = document.getElementById('indicador-email');
+            const display = document.getElementById('target-email-display');
+
+            if (!unidade || !tipo) {
+                indicador.classList.add('hidden');
+                return;
+            }
+
+            const emailMap = {
+                brisa: {
+                    material: 'almoxarifado.brisa@ccp2.com.br',
+                    administrativa: 'secretaria.brisa@ccp2.com.br',
+                    pedagogica: 'coordenacao.brisa@ccp2.com.br'
+                },
+                santissimo: {
+                    material: 'almoxarifado.santissimo@ccp2.com.br',
+                    administrativa: 'secretaria.santissimo@ccp2.com.br',
+                    pedagogica: 'coordenacao.santissimo@ccp2.com.br'
+                },
+                santa_cruz: {
+                    material: 'almoxarifado.santacruz@ccp2.com.br',
+                    administrativa: 'secretaria.santacruz@ccp2.com.br',
+                    pedagogica: 'coordenacao.santacruz@ccp2.com.br'
+                }
+            };
+
+            const destEmail = emailMap[unidade][tipo];
+            display.innerText = destEmail;
+            indicador.classList.remove('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const modal = document.getElementById('sucesso-modal');
+            modal.classList.remove('hidden');
+            modal.scrollIntoView({ behavior: 'smooth' });
+
+            setTimeout(() => {
+                document.getElementById('form-solicitacao').reset();
+                toggleFormFields();
+                document.getElementById('indicador-email').classList.add('hidden');
+            }, 5000);
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+</body>
+</html>
