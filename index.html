@@ -10,10 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- API de Login do Google -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -48,7 +45,6 @@
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 transition-colors duration-300 antialiased">
 
-    <!-- ==================== LANDING PAGE ==================== -->
     <div id="landing-page" class="min-h-screen flex flex-col relative overflow-hidden">
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-400/20 dark:bg-blue-900/30 blur-[100px] pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-red-400/10 dark:bg-red-900/20 blur-[100px] pointer-events-none"></div>
@@ -80,7 +76,7 @@
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500">inteligente.</span>
                     </h1>
                     <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl leading-relaxed">
-                        Uma plataforma prática para otimizar sua rotina escolar. Centralize solicitações, consulte o calendário e acesse a biblioteca digital em um só lugar.
+                        Uma plataforma prática para otimizar a rotina docente. Centralize solicitações, consulte calendários e acesse o acervo digital em um só lugar.
                     </p>
                 </div>
                 
@@ -100,8 +96,8 @@
                             <div class="flex-grow border-t border-slate-200 dark:border-darkborder"></div>
                         </div>
 
-                        <button onclick="enterAsDemo()" class="w-full py-3 px-4 rounded-xl border-2 border-slate-200 dark:border-darkborder text-slate-600 dark:text-slate-300 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                            <i class="fa-solid fa-vial"></i> Modo de Teste Rápido
+                        <button onclick="enterAsAdminDemo()" class="w-full py-3 px-4 rounded-xl border-2 border-slate-200 dark:border-darkborder text-slate-600 dark:text-slate-300 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fa-solid fa-laptop-code"></i> Login de Administração (TI)
                         </button>
                     </div>
                 </div>
@@ -109,11 +105,9 @@
         </main>
     </div>
 
-    <!-- ==================== DASHBOARD ==================== -->
     <div id="dashboard-app" class="hidden h-screen flex overflow-hidden bg-surface dark:bg-darkbg">
         <div id="sidebar-overlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden transition-opacity"></div>
 
-        <!-- Sidebar -->
         <aside id="sidebar" class="w-[280px] bg-white dark:bg-darkcard border-r border-slate-200 dark:border-darkborder flex flex-col fixed inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 lg:static transition-transform duration-300 ease-in-out z-50 h-full">
             <div class="h-20 flex items-center justify-between px-6 border-b border-slate-100 dark:border-darkborder">
                 <div class="flex items-center gap-3">
@@ -127,11 +121,11 @@
             
             <div class="px-6 py-6 border-b border-slate-100 dark:border-darkborder">
                 <div class="flex items-center gap-4">
-                    <img id="user-avatar" src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-100 dark:ring-darkborder">
+                    <img id="user-avatar" src="" alt="Avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-100 dark:ring-darkborder">
                     <div class="flex flex-col truncate">
-                        <span id="user-name" class="text-sm font-bold text-slate-900 dark:text-white truncate">Prof. Visitante</span>
-                        <span id="user-email" class="text-xs text-slate-500 dark:text-slate-400 truncate">Séries Finais</span>
-                        <span id="admin-badge" class="hidden mt-1 px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-md w-max border border-primary/20">Administrador</span>
+                        <span id="user-name" class="text-sm font-bold text-slate-900 dark:text-white truncate"></span>
+                        <span id="user-email" class="text-xs text-slate-500 dark:text-slate-400 truncate"></span>
+                        <span id="admin-badge" class="hidden mt-1 px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-md w-max border border-primary/20">Administrador TI</span>
                     </div>
                 </div>
             </div>
@@ -141,7 +135,7 @@
                     <i class="fa-solid fa-border-all w-5"></i> Visão Geral
                 </button>
                 <button onclick="switchTab('solicitacoes')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="solicitacoes">
-                    <i class="fa-solid fa-layer-group w-5"></i> Solicitações
+                    <i class="fa-solid fa-layer-group w-5"></i> Central de Chamados
                 </button>
                 <button onclick="switchTab('links')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="links">
                     <i class="fa-solid fa-link w-5"></i> Ferramentas
@@ -150,7 +144,7 @@
                     <i class="fa-regular fa-calendar w-5"></i> Calendário
                 </button>
                 <button onclick="switchTab('biblioteca')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="biblioteca">
-                    <i class="fa-regular fa-folder-open w-5"></i> Biblioteca
+                    <i class="fa-regular fa-folder-open w-5"></i> Biblioteca e Manuais
                 </button>
             </nav>
 
@@ -164,7 +158,6 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
             <header class="h-20 bg-surface/80 dark:bg-darkbg/80 backdrop-blur-md flex items-center justify-between px-6 lg:px-10 z-10 sticky top-0 border-b border-transparent shadow-sm">
                 <div class="flex items-center gap-4">
@@ -177,28 +170,26 @@
 
             <div class="flex-1 overflow-y-auto p-6 lg:p-10 relative">
                 
-                <!-- ABA: INÍCIO -->
                 <div id="inicio" class="tab-content active max-w-7xl mx-auto">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
                         <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder hover:shadow-md transition">
-                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Aulas Hoje</p>
-                            <h3 class="text-4xl font-black text-slate-900 dark:text-white">05</h3>
+                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Mural de Avisos</p>
+                            <h3 class="text-4xl font-black text-slate-900 dark:text-white">01</h3>
                         </div>
                         <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder hover:shadow-md transition">
-                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Avisos Pendentes</p>
-                            <h3 class="text-4xl font-black text-slate-900 dark:text-white">02</h3>
+                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Meus Chamados</p>
+                            <h3 class="text-4xl font-black text-slate-900 dark:text-white">0</h3>
                         </div>
                         <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder hover:shadow-md transition sm:col-span-2 lg:col-span-1">
-                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Próximo Evento</p>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">Conselho de Classe</h3>
-                            <p class="text-xs text-slate-500 font-medium mt-2">15 Junho • Unidade Brisa</p>
+                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Sistema Acadêmico</p>
+                            <h3 class="text-xl font-bold text-emerald-500 mt-1"><i class="fa-solid fa-check-circle mr-1"></i> Operacional</h3>
+                            <p class="text-xs text-slate-500 font-medium mt-2">Nenhuma instabilidade detectada.</p>
                         </div>
                     </div>
                     
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder p-8">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="text-lg font-bold text-slate-900 dark:text-white">Mural da Coordenação</h3>
-                            <!-- BOTÃO ADMIN -->
                             <button class="admin-only hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition hover:scale-105">
                                 <i class="fa-solid fa-plus mr-1"></i> Novo Aviso
                             </button>
@@ -207,19 +198,17 @@
                             <div class="flex gap-5 p-5 rounded-2xl bg-blue-50/50 dark:bg-slate-800/50 border border-blue-100 dark:border-slate-700">
                                 <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-bullhorn"></i></div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900 dark:text-white">Padronização de Telas Interativas</h4>
-                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Aviso do Coordenador Maciel: Lembramos que os materiais em slides e vídeos nas novas telas das unidades devem ser sempre exportados na proporção 16:9.</p>
-                                    <span class="text-[10px] font-bold text-slate-400 uppercase mt-3 inline-block">10 de Junho</span>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Padrão de Mídia para as Telas Interativas</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Aviso da Coordenação (Maciel): Solicitamos que todo material multimídia e slide deck para as novas telas de LED sejam criados obrigatoriamente na proporção 16:9.</p>
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase mt-3 inline-block">Postado recentemente</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ABA: SOLICITAÇÕES -->
                 <div id="solicitacoes" class="tab-content max-w-5xl mx-auto">
                     
-                    <!-- PAINEL DE GESTÃO ADMIN (SÓ APARECE SE FOR COORDENADOR/RHAY) -->
                     <div class="admin-only hidden mb-10 bg-slate-900 dark:bg-slate-800 rounded-3xl p-6 shadow-lg border border-slate-800 dark:border-slate-700">
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-inbox text-blue-400 mr-2"></i> Caixa de Entrada Institucional</h3>
@@ -228,38 +217,45 @@
                         <div class="bg-slate-800 dark:bg-slate-900 rounded-2xl overflow-hidden">
                             <table class="w-full text-left text-sm text-slate-300">
                                 <tr class="bg-slate-800 border-b border-slate-700">
-                                    <th class="p-4 font-semibold">Requerente</th>
+                                    <th class="p-4 font-semibold">Requerente (Equipe)</th>
                                     <th class="p-4 font-semibold">Tipo</th>
                                     <th class="p-4 font-semibold">Status</th>
                                     <th class="p-4 font-semibold text-right">Ação</th>
                                 </tr>
                                 <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition">
-                                    <td class="p-4">Sofia (Brisa)</td>
+                                    <td class="p-4 font-medium text-white">Sofia (Unidade Brisa)</td>
                                     <td class="p-4">Material</td>
                                     <td class="p-4"><span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded-md text-xs font-bold">Pendente</span></td>
                                     <td class="p-4 text-right">
                                         <button class="bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Analisar</button>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-slate-700/30 transition">
-                                    <td class="p-4">Vitor (Santíssimo)</td>
-                                    <td class="p-4">Administrativa</td>
-                                    <td class="p-4"><span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-md text-xs font-bold">Deferido</span></td>
+                                <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition">
+                                    <td class="p-4 font-medium text-white">Vitor (Unidade Santíssimo)</td>
+                                    <td class="p-4">Suporte TI</td>
+                                    <td class="p-4"><span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded-md text-xs font-bold">Pendente</span></td>
                                     <td class="p-4 text-right">
-                                        <button class="bg-slate-600 hover:bg-slate-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Visualizar</button>
+                                        <button class="bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Analisar</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700/30 transition">
+                                    <td class="p-4">Breno (Unidade Santa Cruz)</td>
+                                    <td class="p-4">Administrativa</td>
+                                    <td class="p-4"><span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-md text-xs font-bold">Concluído</span></td>
+                                    <td class="p-4 text-right">
+                                        <button class="bg-slate-600 hover:bg-slate-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Histórico</button>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
 
-                    <!-- FORMULÁRIO PADRÃO DO PROFESSOR -->
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder p-6 md:p-10">
                         <div class="flex items-center gap-4 mb-8 border-b border-slate-100 dark:border-darkborder pb-6">
                             <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl"><i class="fa-solid fa-plus"></i></div>
                             <div>
                                 <h3 class="text-xl font-bold text-slate-900 dark:text-white">Nova Solicitação</h3>
-                                <p class="text-sm text-slate-500 dark:text-slate-400">Preencha os dados para abertura do chamado.</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Preencha os dados para registrar e rotear seu chamado.</p>
                             </div>
                         </div>
                         
@@ -280,6 +276,7 @@
                                         <option value="" disabled selected>Selecione...</option>
                                         <option value="infantil_iniciais">Infantil / Iniciais</option>
                                         <option value="finais_medio">Finais / Médio</option>
+                                        <option value="ti_infra">TI / Infraestrutura</option>
                                     </select>
                                 </div>
                             </div>
@@ -291,30 +288,38 @@
                                     <option value="material">Material (Almoxarifado)</option>
                                     <option value="administrativa">Administrativa / RH</option>
                                     <option value="pedagogica">Apoio Pedagógico</option>
+                                    <option value="suporte_ti">Suporte Técnico / Redes</option>
                                 </select>
                             </div>
 
-                            <!-- Campos Dinâmicos -->
                             <div id="campos-dinamicos-container" class="hidden rounded-2xl border border-slate-200 dark:border-darkborder p-6 bg-slate-50/50 dark:bg-slate-800/30">
+                                
                                 <div id="campos-material" class="hidden space-y-4">
                                     <div class="grid grid-cols-2 gap-4">
                                         <input type="text" id="mat_turma" placeholder="Série / Turma" class="col-span-2 md:col-span-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
                                         <input type="text" id="mat_evento" placeholder="Atividade Relacionada" class="col-span-2 md:col-span-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
                                     </div>
-                                    <textarea id="mat_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Qual material e quantidade?"></textarea>
+                                    <textarea id="mat_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Especifique o material e a quantidade..."></textarea>
                                 </div>
+                                
                                 <div id="campos-administrativa" class="hidden space-y-4">
                                     <input type="text" id="adm_cargo" placeholder="Sua Função / Cargo Atual" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
-                                    <textarea id="adm_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Descreva sua solicitação (Folha, Ponto, Documentos...)"></textarea>
+                                    <textarea id="adm_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Descreva sua solicitação de RH/Administrativa..."></textarea>
                                 </div>
+                                
                                 <div id="campos-pedagogica" class="hidden space-y-4">
                                     <input type="text" id="ped_disc" placeholder="Disciplina" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
                                     <textarea id="ped_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Descreva a demanda pedagógica..."></textarea>
                                 </div>
+
+                                <div id="campos-suporte_ti" class="hidden space-y-4">
+                                    <input type="text" id="ti_equip" placeholder="Equipamento (Ex: Switch Cisco, Tela LED, Notebook)" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
+                                    <textarea id="ti_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Descreva o problema de rede, infraestrutura ou sistema..."></textarea>
+                                </div>
                             </div>
 
                             <div id="indicador-email" class="hidden p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border-l-4 border-primary">
-                                <p class="text-xs text-slate-500 dark:text-slate-400">Roteamento Inteligente: <strong id="target-email-display" class="text-primary dark:text-blue-400"></strong></p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Fluxo Automático: O chamado será enviado para <strong id="target-email-display" class="text-primary dark:text-blue-400"></strong></p>
                             </div>
 
                             <button type="submit" id="btn-submit" class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-primary dark:hover:bg-slate-200 font-bold py-3 px-6 rounded-xl transition-all shadow-md">
@@ -323,12 +328,14 @@
                         </form>
 
                         <div id="sucesso-modal" class="hidden mt-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30 text-center text-emerald-700 dark:text-emerald-400 font-bold">
-                            Chamado enviado com sucesso!
+                            <i class="fa-solid fa-circle-check mr-2"></i> Solicitação enviada com sucesso!
+                        </div>
+                        <div id="erro-modal" class="hidden mt-6 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30 text-center text-red-700 dark:text-red-400 font-bold">
+                            <i class="fa-solid fa-circle-exclamation mr-2"></i> Erro ao enviar. Verifique o console.
                         </div>
                     </div>
                 </div>
 
-                <!-- ABA: LINKS RÁPIDOS -->
                 <div id="links" class="tab-content max-w-7xl mx-auto">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                         <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
@@ -340,48 +347,39 @@
                             <span class="font-bold text-slate-800 dark:text-white">Agenda Edu</span>
                         </a>
                         <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
-                            <div class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 flex items-center justify-center text-2xl group-hover:bg-indigo-600 group-hover:text-white transition"><i class="fa-solid fa-language"></i></div>
-                            <span class="font-bold text-slate-800 dark:text-white">Portal PES</span>
+                            <div class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 flex items-center justify-center text-2xl group-hover:bg-indigo-600 group-hover:text-white transition"><i class="fa-solid fa-network-wired"></i></div>
+                            <span class="font-bold text-slate-800 dark:text-white">Rede UniFi</span>
                         </a>
                         <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
-                            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 text-orange-600 flex items-center justify-center text-2xl group-hover:bg-orange-500 group-hover:text-white transition"><i class="fa-solid fa-chalkboard"></i></div>
-                            <span class="font-bold text-slate-800 dark:text-white">Classroom</span>
+                            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 text-orange-600 flex items-center justify-center text-2xl group-hover:bg-orange-500 group-hover:text-white transition"><i class="fa-brands fa-microsoft"></i></div>
+                            <span class="font-bold text-slate-800 dark:text-white text-center">Microsoft 365</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- ABA: CALENDÁRIO -->
                 <div id="calendario" class="tab-content max-w-7xl mx-auto">
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder overflow-hidden">
                         <div class="p-6 border-b border-slate-100 dark:border-darkborder flex justify-between items-center bg-slate-50 dark:bg-slate-800/30">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Junho 2026</h3>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Agenda Institucional</h3>
                             <div class="flex gap-4 items-center">
-                                <!-- BOTÃO ADMIN -->
-                                <button class="admin-only hidden text-primary font-bold text-sm hover:underline"><i class="fa-solid fa-calendar-plus"></i> Cadastrar Evento</button>
-                                <div class="flex gap-2">
-                                    <button class="p-2.5 rounded-lg border border-slate-200 dark:border-darkborder hover:bg-slate-100 dark:hover:bg-slate-700 transition"><i class="fa-solid fa-chevron-left text-sm"></i></button>
-                                    <button class="p-2.5 rounded-lg border border-slate-200 dark:border-darkborder hover:bg-slate-100 dark:hover:bg-slate-700 transition"><i class="fa-solid fa-chevron-right text-sm"></i></button>
-                                </div>
+                                <button class="admin-only hidden text-primary font-bold text-sm hover:underline"><i class="fa-solid fa-calendar-plus"></i> Agendar</button>
                             </div>
                         </div>
                         <div class="p-10 text-center text-slate-500">
-                            <!-- Calendário simplificado para o MVP -->
                             <i class="fa-regular fa-calendar-days text-4xl mb-4 opacity-50"></i>
-                            <p>Visualização de grade do calendário (Integração com Google Calendar)</p>
+                            <p>Sincronização com o Calendário do Google Workspace ocorrerá nesta seção.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- ABA: BIBLIOTECA -->
                 <div id="biblioteca" class="tab-content max-w-7xl mx-auto">
                     <div class="flex flex-col lg:flex-row gap-4 mb-8 justify-between items-center">
                         <div class="flex-1 w-full relative">
                             <i class="fa-solid fa-magnifying-glass absolute left-5 top-3.5 text-slate-400"></i>
-                            <input type="text" placeholder="Buscar documentos no Acervo Digital..." class="w-full pl-12 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white shadow-sm">
+                            <input type="text" placeholder="Buscar documentos no Google Drive integrado..." class="w-full pl-12 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white shadow-sm">
                         </div>
-                        <!-- BOTÃO ADMIN -->
                         <button class="admin-only hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-2xl text-sm font-bold shadow-sm transition hover:scale-105 shrink-0">
-                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Anexar Arquivo
+                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Enviar Arquivo
                         </button>
                     </div>
 
@@ -390,21 +388,26 @@
                             <table class="w-full text-left border-collapse">
                                 <thead>
                                     <tr class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider">
-                                        <th class="p-5 font-bold">Arquivo</th>
+                                        <th class="p-5 font-bold">Arquivo (G-Drive)</th>
                                         <th class="p-5 font-bold">Categoria</th>
-                                        <th class="p-5 font-bold text-right">Link (Google Drive)</th>
+                                        <th class="p-5 font-bold text-right">Acesso</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-100 dark:divide-darkborder text-sm text-slate-700 dark:text-slate-300">
                                     <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition group">
                                         <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-word text-blue-600 text-xl bg-blue-50 dark:bg-slate-800 p-2 rounded-lg"></i> Cabeçalho_Provas_2026.docx</td>
                                         <td class="p-5">Modelos</td>
-                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Acessar no Drive</a></td>
+                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Abrir Drive</a></td>
                                     </tr>
                                     <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition group">
-                                        <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-pdf text-red-600 text-xl bg-red-50 dark:bg-slate-800 p-2 rounded-lg"></i> Diretrizes_Breno_e_Equipe.pdf</td>
-                                        <td class="p-5">Manuais</td>
-                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Acessar no Drive</a></td>
+                                        <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-pdf text-red-600 text-xl bg-red-50 dark:bg-slate-800 p-2 rounded-lg"></i> Politica_Impressao_NDD.pdf</td>
+                                        <td class="p-5">TI / Infraestrutura</td>
+                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Abrir Drive</a></td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition group">
+                                        <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-pdf text-red-600 text-xl bg-red-50 dark:bg-slate-800 p-2 rounded-lg"></i> Licenciamento_Microsoft_M365.pdf</td>
+                                        <td class="p-5">TI / Compras</td>
+                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Abrir Drive</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -416,19 +419,24 @@
     </div>
 
     <script>
-        // CONFIGURAÇÃO DO GOOGLE SSO
-        // IMPORTANTE: Insira seu Client ID abaixo.
-        const GOOGLE_CLIENT_ID = "311519596922-t4q891vdfdk4ettk126fo0vuffgdr8su.apps.googleusercontent.com";
+        // ==========================================
+        // 1. CONFIGURAÇÕES PRINCIPAIS (COLE AQUI)
+        // ==========================================
+        const GOOGLE_CLIENT_ID = "311519596922-t4q891vdfdk4ettk126fo0vuffgdr8su.apps.googleusercontent.com"; // Ex: xxxx.apps.googleusercontent.com
+        const URL_DO_SCRIPT = "https://script.google.com/macros/s/AKfycbxPX1kMGgneypVHFKcQgyzveu678JiRtS0uY-waGrgUijDYoTIW9G0bifNksG_ZaM55/exec"; // URL gerada no Passo 1
         
-        // E-mails autorizados para ter permissão de Admnistrador (Edite a lista)
+        // E-mails que terão acesso à visão de Administrador no Portal
         const ADMIN_EMAILS = [
             'rhay@ccp2.com.br',
-            'adm@ccp2.com.br',
-            'diretoria@ccp2.com.br'
+            'maciel@ccp2.com.br',
+            'adm@ccp2.com.br'
         ];
 
+        // ==========================================
+        // 2. LÓGICA DE AUTENTICAÇÃO (SSO)
+        // ==========================================
         window.onload = function () {
-            if(GOOGLE_CLIENT_ID !== "COLE_AQUI_SEU_CLIENT_ID_DO_GOOGLE") {
+            if(GOOGLE_CLIENT_ID && !GOOGLE_CLIENT_ID.includes("COLE_AQUI")) {
                 google.accounts.id.initialize({
                     client_id: GOOGLE_CLIENT_ID, 
                     callback: handleCredentialResponse,
@@ -440,7 +448,7 @@
                     { theme: "outline", size: "large", shape: "pill", width: "300" }
                 );
             } else {
-                document.getElementById("google-sso-btn").innerHTML = '<p class="text-xs text-red-500 font-bold">⚠️ Insira o Client ID do Google no código fonte.</p>';
+                document.getElementById("google-sso-btn").innerHTML = '<p class="text-xs text-red-500 font-bold p-4 bg-red-50 rounded-xl">⚠️ Google Client ID não configurado.</p>';
             }
         };
 
@@ -459,7 +467,7 @@
             if (userData.email.endsWith('@ccp2.com.br')) {
                 efetuarLogin(userData.name, userData.email, userData.picture);
             } else {
-                alert("Acesso negado. Utilize um e-mail @ccp2.com.br");
+                alert("Acesso Negado.\nUtilize sua conta corporativa @ccp2.com.br");
                 google.accounts.id.disableAutoSelect();
             }
         }
@@ -469,9 +477,8 @@
             document.getElementById('user-email').innerText = email;
             document.getElementById('user-avatar').src = avatar;
 
-            // Verifica se o email logado tem permissão de Admin
+            // Ativa o Modo Admin se o email estiver na lista de permissões
             if (ADMIN_EMAILS.includes(email)) {
-                // Habilita as funções escondidas
                 document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
                 document.getElementById('admin-badge').classList.remove('hidden');
             }
@@ -481,25 +488,19 @@
             document.getElementById('dashboard-app').style.opacity = 1;
         }
 
-        // Função de escape para testes sem configurar o Google Cloud
-        function enterAsDemo() {
-            efetuarLogin("Rhay Rocha Vieira", "rhay@ccp2.com.br", "https://i.pravatar.cc/150?img=11");
+        // Login Fake apenas para você testar as abas de Admin agora
+        function enterAsAdminDemo() {
+            efetuarLogin("Rhay Rocha Vieira (TI)", "rhay@ccp2.com.br", "https://i.pravatar.cc/150?img=11");
         }
 
         function focarNoLogin() {
             document.getElementById('login-container').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.toggle('hidden');
-        }
-
         function exitPortal() {
             document.getElementById('dashboard-app').classList.add('hidden');
             document.getElementById('landing-page').classList.remove('hidden');
             
-            // Reseta funções de Admin
             document.querySelectorAll('.admin-only').forEach(el => el.classList.add('hidden'));
             document.getElementById('admin-badge').classList.add('hidden');
             
@@ -508,7 +509,15 @@
             }
         }
 
-        const titles = { 'inicio': 'Visão Geral', 'solicitacoes': 'Gestão de Chamados', 'links': 'Ferramentas', 'calendario': 'Calendário Escolar', 'biblioteca': 'Acervo Digital' };
+        // ==========================================
+        // 3. NAVEGAÇÃO E UI
+        // ==========================================
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.toggle('hidden');
+        }
+
+        const titles = { 'inicio': 'Visão Geral', 'solicitacoes': 'Central de Chamados', 'links': 'Ferramentas', 'calendario': 'Calendário Institucional', 'biblioteca': 'Acervo Digital' };
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -528,13 +537,18 @@
             }
         }
 
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
+
+        // ==========================================
+        // 4. LÓGICA DO FORMULÁRIO DINÂMICO
+        // ==========================================
         function toggleFormFields() {
             const tipo = document.getElementById('form-tipo').value;
             const container = document.getElementById('campos-dinamicos-container');
             
-            document.getElementById('campos-material').classList.add('hidden');
-            document.getElementById('campos-administrativa').classList.add('hidden');
-            document.getElementById('campos-pedagogica').classList.add('hidden');
+            ['campos-material', 'campos-administrativa', 'campos-pedagogica', 'campos-suporte_ti'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
             
             if (tipo) {
                 container.classList.remove('hidden');
@@ -552,34 +566,41 @@
             if (!unidade || !tipo) { indicador.classList.add('hidden'); return; }
 
             const emailMap = {
-                brisa: { material: 'almoxarifado.brisa@ccp2.com.br', administrativa: 'secretaria.brisa@ccp2.com.br', pedagogica: 'coordenacao.brisa@ccp2.com.br' },
-                santissimo: { material: 'almoxarifado.santissimo@ccp2.com.br', administrativa: 'secretaria.santissimo@ccp2.com.br', pedagogica: 'coordenacao.santissimo@ccp2.com.br' },
-                santa_cruz: { material: 'almoxarifado.santacruz@ccp2.com.br', administrativa: 'secretaria.santacruz@ccp2.com.br', pedagogica: 'coordenacao.santacruz@ccp2.com.br' }
+                brisa: { material: 'almoxarifado.brisa@ccp2.com.br', administrativa: 'secretaria.brisa@ccp2.com.br', pedagogica: 'coordenacao.brisa@ccp2.com.br', suporte_ti: 'suporte@ccp2.com.br' },
+                santissimo: { material: 'almoxarifado.santissimo@ccp2.com.br', administrativa: 'secretaria.santissimo@ccp2.com.br', pedagogica: 'coordenacao.santissimo@ccp2.com.br', suporte_ti: 'suporte@ccp2.com.br' },
+                santa_cruz: { material: 'almoxarifado.santacruz@ccp2.com.br', administrativa: 'secretaria.santacruz@ccp2.com.br', pedagogica: 'coordenacao.santacruz@ccp2.com.br', suporte_ti: 'suporte@ccp2.com.br' }
             };
 
             document.getElementById('target-email-display').innerText = emailMap[unidade][tipo];
             indicador.classList.remove('hidden');
         }
 
-        // INTEGRAÇÃO REAL COM O GOOGLE APPS SCRIPT
+        // ==========================================
+        // 5. INTEGRAÇÃO REAL DE ENVIO DE DADOS (FETCH)
+        // ==========================================
         async function handleFormSubmit(event) {
             event.preventDefault();
             
+            // Oculta alertas antigos
+            document.getElementById('sucesso-modal').classList.add('hidden');
+            document.getElementById('erro-modal').classList.add('hidden');
+            
             const btn = document.getElementById('btn-submit');
             const textoOriginal = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
             btn.disabled = true;
 
             const tipo = document.getElementById('form-tipo').value;
             let msgFormatada = "";
 
-            // Coleta os dados dependendo do tipo de chamado
             if(tipo === 'material'){
-                msgFormatada = `Turma: ${document.getElementById('mat_turma').value} | Evento: ${document.getElementById('mat_evento').value} \nDescrição: ${document.getElementById('mat_desc').value}`;
+                msgFormatada = `Turma: ${document.getElementById('mat_turma').value} \nEvento: ${document.getElementById('mat_evento').value} \nDescrição: ${document.getElementById('mat_desc').value}`;
             } else if(tipo === 'administrativa') {
                 msgFormatada = `Cargo: ${document.getElementById('adm_cargo').value} \nDescrição: ${document.getElementById('adm_desc').value}`;
             } else if(tipo === 'pedagogica') {
                 msgFormatada = `Disciplina: ${document.getElementById('ped_disc').value} \nDescrição: ${document.getElementById('ped_desc').value}`;
+            } else if(tipo === 'suporte_ti') {
+                msgFormatada = `Equipamento: ${document.getElementById('ti_equip').value} \nDescrição do Erro: ${document.getElementById('ti_desc').value}`;
             }
 
             const dados = {
@@ -592,14 +613,8 @@
             };
 
             try {
-                // IMPORTANTE: Insira a URL fornecida pelo Google Apps Script
-                const URL_DO_SCRIPT = "https://script.google.com/macros/s/AKfycbxPX1kMGgneypVHFKcQgyzveu678JiRtS0uY-waGrgUijDYoTIW9G0bifNksG_ZaM55/exec";
-
-                if (URL_DO_SCRIPT === "https://script.google.com/macros/s/AKfycbxPX1kMGgneypVHFKcQgyzveu678JiRtS0uY-waGrgUijDYoTIW9G0bifNksG_ZaM55/exec") {
-                    // Simulação para o Frontend não quebrar caso não tenha o Script ainda
-                    console.log("Simulando envio. Dados capturados:", dados);
-                    setTimeout(() => mostrarSucesso(), 1500);
-                } else {
+                if (URL_DO_SCRIPT && !URL_DO_SCRIPT.includes("COLE_AQUI")) {
+                    // Chamada Real para o Google Apps Script
                     const response = await fetch(URL_DO_SCRIPT, {
                         method: "POST",
                         body: JSON.stringify(dados),
@@ -607,27 +622,35 @@
                     });
 
                     if(response.ok) {
-                        mostrarSucesso();
+                        finalizarFormulario(true);
+                    } else {
+                        finalizarFormulario(false);
                     }
+                } else {
+                    // Modo Demonstração Rápida se a URL não foi inserida
+                    console.warn("⚠️ API do Google Apps Script não vinculada. Simulando envio para apresentação.");
+                    setTimeout(() => finalizarFormulario(true), 1500);
                 }
             } catch (erro) {
-                alert("Ocorreu um erro de conexão. Tente novamente.");
-                console.error(erro);
+                console.error("Erro no envio:", erro);
+                finalizarFormulario(false);
             } finally {
                 btn.innerHTML = textoOriginal;
                 btn.disabled = false;
             }
         }
 
-        function mostrarSucesso() {
-            document.getElementById('sucesso-modal').classList.remove('hidden');
-            document.getElementById('form-solicitacao').reset();
-            toggleFormFields();
-            document.getElementById('indicador-email').classList.add('hidden');
-            setTimeout(() => document.getElementById('sucesso-modal').classList.add('hidden'), 5000);
+        function finalizarFormulario(sucesso) {
+            if(sucesso) {
+                document.getElementById('sucesso-modal').classList.remove('hidden');
+                document.getElementById('form-solicitacao').reset();
+                toggleFormFields();
+                document.getElementById('indicador-email').classList.add('hidden');
+                setTimeout(() => document.getElementById('sucesso-modal').classList.add('hidden'), 5000);
+            } else {
+                document.getElementById('erro-modal').classList.remove('hidden');
+            }
         }
-
-        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
     </script>
 </body>
 </html>
