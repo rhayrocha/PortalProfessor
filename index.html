@@ -423,12 +423,12 @@
         // E-mails autorizados para ter permissão de Admnistrador (Edite a lista)
         const ADMIN_EMAILS = [
             'rhay@ccp2.com.br',
-            'coordenacao@ccp2.com.br',
+            'adm@ccp2.com.br',
             'diretoria@ccp2.com.br'
         ];
 
         window.onload = function () {
-            if(GOOGLE_CLIENT_ID !== "COLE_AQUI_SEU_CLIENT_ID_DO_GOOGLE") {
+            if(GOOGLE_CLIENT_ID !== "311519596922-t4q891vdfdk4ettk126fo0vuffgdr8su.apps.googleusercontent.com") {
                 google.accounts.id.initialize({
                     client_id: GOOGLE_CLIENT_ID, 
                     callback: handleCredentialResponse,
@@ -593,9 +593,9 @@
 
             try {
                 // IMPORTANTE: Insira a URL fornecida pelo Google Apps Script
-                const URL_DO_SCRIPT = "COLE_AQUI_A_URL_DO_SEU_GOOGLE_APPS_SCRIPT_IMPLANTADO";
+                const URL_DO_SCRIPT = "https://script.google.com/macros/s/AKfycbxPX1kMGgneypVHFKcQgyzveu678JiRtS0uY-waGrgUijDYoTIW9G0bifNksG_ZaM55/exec";
 
-                if (URL_DO_SCRIPT === "COLE_AQUI_A_URL_DO_SEU_GOOGLE_APPS_SCRIPT_IMPLANTADO") {
+                if (URL_DO_SCRIPT === "https://script.google.com/macros/s/AKfycbxPX1kMGgneypVHFKcQgyzveu678JiRtS0uY-waGrgUijDYoTIW9G0bifNksG_ZaM55/exec") {
                     // Simulação para o Frontend não quebrar caso não tenha o Script ainda
                     console.log("Simulando envio. Dados capturados:", dados);
                     setTimeout(() => mostrarSucesso(), 1500);
