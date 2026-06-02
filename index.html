@@ -10,7 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- API de Login do Google -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -25,10 +28,6 @@
                         darkbg: '#0B1120',
                         darkcard: '#1e293b',
                         darkborder: '#334155'
-                    },
-                    boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-                        'neo': '20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff',
                     }
                 }
             }
@@ -36,44 +35,34 @@
     </script>
     
     <style>
-        .glass-panel { 
-            background: rgba(255, 255, 255, 0.65); 
-            backdrop-filter: blur(16px); 
-            -webkit-backdrop-filter: blur(16px); 
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-        }
-        .dark .glass-panel { 
-            background: rgba(30, 41, 59, 0.6); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-        }
-        .tab-content { display: none; animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .glass-panel { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.4); }
+        .dark .glass-panel { background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .tab-content { display: none; animation: slideUp 0.4s ease-out; }
         .tab-content.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .dark ::-webkit-scrollbar-thumb { background: #475569; }
-        .aspect-widescreen { aspect-ratio: 16 / 9; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 transition-colors duration-300 selection:bg-primary selection:text-white antialiased">
+<body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 transition-colors duration-300 antialiased">
 
     <!-- ==================== LANDING PAGE ==================== -->
     <div id="landing-page" class="min-h-screen flex flex-col relative overflow-hidden">
-        <!-- Blobs decorativos de fundo -->
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-400/20 dark:bg-blue-900/30 blur-[100px] pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-red-400/10 dark:bg-red-900/20 blur-[100px] pointer-events-none"></div>
 
-        <header class="glass-panel fixed w-full top-0 z-50 transition-all duration-300 border-b border-white/20 dark:border-white/5">
+        <header class="glass-panel fixed w-full top-0 z-50 border-b border-white/20 dark:border-white/5">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">C2</div>
                     <div class="flex flex-col">
-                        <span class="font-extrabold text-xl text-slate-900 dark:text-white leading-tight tracking-tight">Centro Cultural Pedro II</span>
-                        <span class="text-xs font-medium text-slate-500 dark:text-slate-400 tracking-wider uppercase">Portal do Professor</span>
+                        <span class="font-extrabold text-xl text-slate-900 dark:text-white leading-tight">Centro Cultural Pedro II</span>
+                        <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Portal do Professor</span>
                     </div>
                 </div>
-                <button onclick="focarNoLogin()" class="bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-100 text-white dark:text-slate-900 px-6 py-2.5 rounded-full text-sm font-semibold transition-transform hover:scale-105 shadow-md">
+                <button onclick="focarNoLogin()" class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-full text-sm font-semibold transition-transform hover:scale-105 shadow-md">
                     Entrar no Sistema
                 </button>
             </div>
@@ -81,46 +70,26 @@
 
         <main class="flex-grow flex items-center pt-32 pb-16 relative z-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
                 <div class="lg:col-span-7 flex flex-col items-start text-left">
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-200 dark:border-blue-800/50">
                         <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span></span>
-                        Novo Sistema 2026
+                        Sistema de Acesso Unificado
                     </div>
                     <h1 class="text-5xl md:text-7xl font-black text-slate-900 dark:text-white leading-[1.1] mb-6 tracking-tight">
                         Gestão acadêmica <br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500">inteligente.</span>
                     </h1>
                     <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl leading-relaxed">
-                        Uma plataforma unificada para otimizar sua rotina escolar. Centralize solicitações, calendários e acesse automações educacionais avançadas em um só lugar.
+                        Uma plataforma prática para otimizar sua rotina escolar. Centralize solicitações, consulte o calendário e acesse a biblioteca digital em um só lugar.
                     </p>
-                    
-                    <!-- Destaques -->
-                    <div class="grid grid-cols-2 gap-6 w-full max-w-xl">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-white dark:bg-darkcard shadow-sm flex items-center justify-center text-primary"><i class="fa-solid fa-bolt text-lg"></i></div>
-                            <div>
-                                <h4 class="font-bold text-slate-900 dark:text-white">Mais Rápido</h4>
-                                <p class="text-sm text-slate-500">Automações nativas</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-white dark:bg-darkcard shadow-sm flex items-center justify-center text-secondary"><i class="fa-solid fa-shield-halved text-lg"></i></div>
-                            <div>
-                                <h4 class="font-bold text-slate-900 dark:text-white">100% Seguro</h4>
-                                <p class="text-sm text-slate-500">SSO Institucional</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
-                <!-- Área de Login -->
                 <div class="lg:col-span-5 flex justify-center lg:justify-end w-full">
-                    <div id="login-container" class="glass-panel p-8 md:p-10 rounded-[2rem] shadow-glass w-full max-w-md relative overflow-hidden group transition-all">
+                    <div id="login-container" class="glass-panel p-8 md:p-10 rounded-[2rem] w-full max-w-md relative overflow-hidden transition-all shadow-xl">
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400"></div>
                         <div class="text-center mb-8">
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Acesso Docente</h3>
-                            <p class="text-sm text-slate-500 dark:text-slate-400">Utilize seu e-mail institucional @ccp2.com.br</p>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Acesso Restrito</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Utilize seu e-mail corporativo @ccp2.com.br</p>
                         </div>
                         
                         <div id="google-sso-btn" class="w-full flex justify-center mb-6"></div>
@@ -131,8 +100,8 @@
                             <div class="flex-grow border-t border-slate-200 dark:border-darkborder"></div>
                         </div>
 
-                        <button onclick="enterAsDemo()" class="w-full py-3 px-4 rounded-xl border-2 border-slate-200 dark:border-darkborder text-slate-600 dark:text-slate-300 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-vial"></i> Modo de Demonstração
+                        <button onclick="enterAsDemo()" class="w-full py-3 px-4 rounded-xl border-2 border-slate-200 dark:border-darkborder text-slate-600 dark:text-slate-300 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <i class="fa-solid fa-vial"></i> Modo de Teste Rápido
                         </button>
                     </div>
                 </div>
@@ -142,14 +111,13 @@
 
     <!-- ==================== DASHBOARD ==================== -->
     <div id="dashboard-app" class="hidden h-screen flex overflow-hidden bg-surface dark:bg-darkbg">
-        
         <div id="sidebar-overlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden transition-opacity"></div>
 
-        <!-- Sidebar Moderna -->
+        <!-- Sidebar -->
         <aside id="sidebar" class="w-[280px] bg-white dark:bg-darkcard border-r border-slate-200 dark:border-darkborder flex flex-col fixed inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 lg:static transition-transform duration-300 ease-in-out z-50 h-full">
             <div class="h-20 flex items-center justify-between px-6 border-b border-slate-100 dark:border-darkborder">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-lg shadow-md shadow-primary/20">C2</div>
+                    <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-lg">C2</div>
                     <span class="font-bold text-lg text-slate-900 dark:text-white">Portal CCP2</span>
                 </div>
                 <button onclick="toggleSidebar()" class="text-slate-400 hover:text-slate-600 lg:hidden focus:outline-none">
@@ -161,23 +129,19 @@
                 <div class="flex items-center gap-4">
                     <img id="user-avatar" src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-100 dark:ring-darkborder">
                     <div class="flex flex-col truncate">
-                        <span id="user-name" class="text-sm font-bold text-slate-900 dark:text-white truncate">Prof. Carlos</span>
-                        <span id="user-email" class="text-xs text-slate-500 dark:text-slate-400 truncate">Matemática - EM</span>
+                        <span id="user-name" class="text-sm font-bold text-slate-900 dark:text-white truncate">Prof. Visitante</span>
+                        <span id="user-email" class="text-xs text-slate-500 dark:text-slate-400 truncate">Séries Finais</span>
+                        <span id="admin-badge" class="hidden mt-1 px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-md w-max border border-primary/20">Administrador</span>
                     </div>
                 </div>
             </div>
 
             <nav class="flex-1 py-6 px-4 space-y-2 overflow-y-auto">
-                <p class="px-4 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Menu Principal</p>
-                
                 <button onclick="switchTab('inicio')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left bg-slate-100 dark:bg-slate-800 text-primary dark:text-white font-semibold transition tab-btn" data-target="inicio">
                     <i class="fa-solid fa-border-all w-5"></i> Visão Geral
                 </button>
                 <button onclick="switchTab('solicitacoes')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="solicitacoes">
                     <i class="fa-solid fa-layer-group w-5"></i> Solicitações
-                </button>
-                <button onclick="switchTab('automacoes')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="automacoes">
-                    <i class="fa-solid fa-wand-magic-sparkles w-5"></i> Automações <span class="ml-auto bg-blue-100 text-blue-700 py-0.5 px-2 rounded-full text-[10px] font-bold">NOVO</span>
                 </button>
                 <button onclick="switchTab('links')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="links">
                     <i class="fa-solid fa-link w-5"></i> Ferramentas
@@ -193,9 +157,6 @@
             <div class="p-4 border-t border-slate-100 dark:border-darkborder space-y-2">
                 <button onclick="toggleDarkMode()" class="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
                     <span class="flex items-center gap-3"><i class="fa-solid fa-moon w-4"></i> Tema Escuro</span>
-                    <div class="w-8 h-4 bg-slate-300 dark:bg-primary rounded-full relative transition-colors">
-                        <div class="w-3 h-3 bg-white rounded-full absolute top-0.5 left-0.5 dark:translate-x-4 transition-transform"></div>
-                    </div>
                 </button>
                 <button onclick="exitPortal()" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
                     <i class="fa-solid fa-arrow-right-from-bracket w-4"></i> Encerrar Sessão
@@ -203,83 +164,52 @@
             </div>
         </aside>
 
-        <!-- Área Principal -->
+        <!-- Main Content -->
         <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
-            
-            <!-- Navbar Superior -->
-            <header class="h-20 bg-surface/80 dark:bg-darkbg/80 backdrop-blur-md flex items-center justify-between px-6 lg:px-10 z-10 sticky top-0">
+            <header class="h-20 bg-surface/80 dark:bg-darkbg/80 backdrop-blur-md flex items-center justify-between px-6 lg:px-10 z-10 sticky top-0 border-b border-transparent shadow-sm">
                 <div class="flex items-center gap-4">
                     <button onclick="toggleSidebar()" class="p-2 -ml-2 rounded-lg text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-800 lg:hidden transition">
                         <i class="fa-solid fa-bars text-xl"></i>
                     </button>
-                    <div>
-                        <h2 id="page-title" class="text-xl font-bold text-slate-900 dark:text-white">Visão Geral</h2>
-                        <p class="text-xs text-slate-500 font-medium hidden sm:block">Acompanhe suas métricas e rotina acadêmica</p>
-                    </div>
-                </div>
-                
-                <div class="flex items-center gap-3">
-                    <div class="relative cursor-pointer p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition text-slate-500 dark:text-slate-400">
-                        <i class="fa-regular fa-bell text-xl"></i>
-                        <span class="absolute top-1 right-1 bg-secondary text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center border-2 border-surface dark:border-darkbg">3</span>
-                    </div>
+                    <h2 id="page-title" class="text-xl font-bold text-slate-900 dark:text-white">Visão Geral</h2>
                 </div>
             </header>
 
-            <!-- Conteúdo com Scroll -->
             <div class="flex-1 overflow-y-auto p-6 lg:p-10 relative">
                 
                 <!-- ABA: INÍCIO -->
                 <div id="inicio" class="tab-content active max-w-7xl mx-auto">
-                    <!-- Cards Rápidos (KPIs) -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                        <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder relative overflow-hidden group hover:shadow-md transition">
-                            <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-50 dark:bg-blue-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-                            <div class="relative z-10">
-                                <div class="flex justify-between items-start mb-4">
-                                    <p class="text-sm font-semibold text-slate-500 dark:text-slate-400">Aulas Hoje</p>
-                                    <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-chalkboard-user"></i></div>
-                                </div>
-                                <h3 class="text-4xl font-black text-slate-900 dark:text-white">05</h3>
-                                <p class="text-xs text-emerald-500 font-medium mt-2"><i class="fa-solid fa-arrow-trend-up"></i> 100% presencial</p>
-                            </div>
+                        <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder hover:shadow-md transition">
+                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Aulas Hoje</p>
+                            <h3 class="text-4xl font-black text-slate-900 dark:text-white">05</h3>
                         </div>
-                        <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder relative overflow-hidden group hover:shadow-md transition">
-                            <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-50 dark:bg-red-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-                            <div class="relative z-10">
-                                <div class="flex justify-between items-start mb-4">
-                                    <p class="text-sm font-semibold text-slate-500 dark:text-slate-400">Pendências</p>
-                                    <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/50 text-red-600 flex items-center justify-center"><i class="fa-regular fa-clock"></i></div>
-                                </div>
-                                <h3 class="text-4xl font-black text-slate-900 dark:text-white">12</h3>
-                                <p class="text-xs text-red-500 font-medium mt-2">Corrigir avaliações da turma 301</p>
-                            </div>
+                        <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder hover:shadow-md transition">
+                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Avisos Pendentes</p>
+                            <h3 class="text-4xl font-black text-slate-900 dark:text-white">02</h3>
                         </div>
-                        <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder relative overflow-hidden group hover:shadow-md transition sm:col-span-2 lg:col-span-1">
-                            <div class="absolute -right-4 -top-4 w-24 h-24 bg-emerald-50 dark:bg-emerald-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-                            <div class="relative z-10">
-                                <div class="flex justify-between items-start mb-4">
-                                    <p class="text-sm font-semibold text-slate-500 dark:text-slate-400">Próximo Evento</p>
-                                    <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 flex items-center justify-center"><i class="fa-regular fa-calendar-check"></i></div>
-                                </div>
-                                <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">Conselho de Classe</h3>
-                                <p class="text-xs text-slate-500 font-medium mt-2"><i class="fa-solid fa-location-dot mr-1"></i> 15 Junho • Unidade Brisa</p>
-                            </div>
+                        <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder hover:shadow-md transition sm:col-span-2 lg:col-span-1">
+                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Próximo Evento</p>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">Conselho de Classe</h3>
+                            <p class="text-xs text-slate-500 font-medium mt-2">15 Junho • Unidade Brisa</p>
                         </div>
                     </div>
                     
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder p-8">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="text-lg font-bold text-slate-900 dark:text-white">Mural da Coordenação</h3>
-                            <button class="text-sm font-semibold text-primary hover:underline">Ver todos</button>
+                            <!-- BOTÃO ADMIN -->
+                            <button class="admin-only hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition hover:scale-105">
+                                <i class="fa-solid fa-plus mr-1"></i> Novo Aviso
+                            </button>
                         </div>
                         <div class="space-y-4">
-                            <div class="flex gap-5 p-5 rounded-2xl bg-blue-50/50 dark:bg-slate-800/50 border border-blue-100 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-800 transition cursor-pointer">
+                            <div class="flex gap-5 p-5 rounded-2xl bg-blue-50/50 dark:bg-slate-800/50 border border-blue-100 dark:border-slate-700">
                                 <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-bullhorn"></i></div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900 dark:text-white">Semana Pedagógica 2026</h4>
-                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Lembramos que o uso dos slides em proporção 16:9 é padrão para as novas telas interativas das salas.</p>
-                                    <span class="text-[10px] font-bold text-slate-400 uppercase mt-3 inline-block">Há 2 horas</span>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Padronização de Telas Interativas</h4>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Aviso do Coordenador Maciel: Lembramos que os materiais em slides e vídeos nas novas telas das unidades devem ser sempre exportados na proporção 16:9.</p>
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase mt-3 inline-block">10 de Junho</span>
                                 </div>
                             </div>
                         </div>
@@ -289,180 +219,111 @@
                 <!-- ABA: SOLICITAÇÕES -->
                 <div id="solicitacoes" class="tab-content max-w-5xl mx-auto">
                     
-                    <!-- Novo Recurso: Rastreio de Chamados -->
-                    <div class="mb-10">
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Meus Chamados Recentes</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200 dark:border-darkborder shadow-sm flex flex-col gap-3">
-                                <div class="flex justify-between items-start">
-                                    <span class="text-xs font-bold px-2 py-1 bg-yellow-100 text-yellow-700 rounded-lg">Em Andamento</span>
-                                    <span class="text-xs text-slate-400">#REQ-4092</span>
-                                </div>
-                                <h4 class="font-bold text-slate-800 dark:text-white text-sm">Material: Feira de Ciências</h4>
-                                <p class="text-xs text-slate-500">Unidade Brisa • Ed. Infantil</p>
-                            </div>
-                            <div class="bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200 dark:border-darkborder shadow-sm flex flex-col gap-3 opacity-70">
-                                <div class="flex justify-between items-start">
-                                    <span class="text-xs font-bold px-2 py-1 bg-emerald-100 text-emerald-700 rounded-lg">Concluído</span>
-                                    <span class="text-xs text-slate-400">#REQ-4011</span>
-                                </div>
-                                <h4 class="font-bold text-slate-800 dark:text-white text-sm">Suporte Pedagógico (História)</h4>
-                                <p class="text-xs text-slate-500">Unidade Santíssimo • Ensino Médio</p>
-                            </div>
+                    <!-- PAINEL DE GESTÃO ADMIN (SÓ APARECE SE FOR COORDENADOR/RHAY) -->
+                    <div class="admin-only hidden mb-10 bg-slate-900 dark:bg-slate-800 rounded-3xl p-6 shadow-lg border border-slate-800 dark:border-slate-700">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-inbox text-blue-400 mr-2"></i> Caixa de Entrada Institucional</h3>
+                            <span class="text-xs font-bold bg-red-500 text-white px-2 py-1 rounded-md">2 Pendentes</span>
+                        </div>
+                        <div class="bg-slate-800 dark:bg-slate-900 rounded-2xl overflow-hidden">
+                            <table class="w-full text-left text-sm text-slate-300">
+                                <tr class="bg-slate-800 border-b border-slate-700">
+                                    <th class="p-4 font-semibold">Requerente</th>
+                                    <th class="p-4 font-semibold">Tipo</th>
+                                    <th class="p-4 font-semibold">Status</th>
+                                    <th class="p-4 font-semibold text-right">Ação</th>
+                                </tr>
+                                <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition">
+                                    <td class="p-4">Sofia (Brisa)</td>
+                                    <td class="p-4">Material</td>
+                                    <td class="p-4"><span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded-md text-xs font-bold">Pendente</span></td>
+                                    <td class="p-4 text-right">
+                                        <button class="bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Analisar</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700/30 transition">
+                                    <td class="p-4">Vitor (Santíssimo)</td>
+                                    <td class="p-4">Administrativa</td>
+                                    <td class="p-4"><span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-md text-xs font-bold">Deferido</span></td>
+                                    <td class="p-4 text-right">
+                                        <button class="bg-slate-600 hover:bg-slate-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Visualizar</button>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
 
+                    <!-- FORMULÁRIO PADRÃO DO PROFESSOR -->
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder p-6 md:p-10">
                         <div class="flex items-center gap-4 mb-8 border-b border-slate-100 dark:border-darkborder pb-6">
                             <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl"><i class="fa-solid fa-plus"></i></div>
                             <div>
                                 <h3 class="text-xl font-bold text-slate-900 dark:text-white">Nova Solicitação</h3>
-                                <p class="text-sm text-slate-500 dark:text-slate-400">Preencha os dados para abertura de ticket automatizado.</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Preencha os dados para abertura do chamado.</p>
                             </div>
                         </div>
                         
                         <form id="form-solicitacao" onsubmit="handleFormSubmit(event)" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Unidade de Destino</label>
-                                    <select id="form-unidade" onchange="updateTargetEmail()" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-sm dark:text-white" required>
-                                        <option value="" disabled selected>Selecione a Unidade...</option>
+                                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Unidade</label>
+                                    <select id="form-unidade" onchange="updateTargetEmail()" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 focus:bg-white focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white" required>
+                                        <option value="" disabled selected>Selecione...</option>
                                         <option value="brisa">Brisa</option>
                                         <option value="santissimo">Santíssimo</option>
                                         <option value="santa_cruz">Santa Cruz</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Segmento Escolar</label>
-                                    <select id="form-segmento" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-sm dark:text-white" required>
-                                        <option value="" disabled selected>Selecione o Segmento...</option>
-                                        <option value="infantil_iniciais">Educação Infantil / Séries Iniciais</option>
-                                        <option value="finais_medio">Séries Finais / Ensino Médio</option>
+                                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Segmento</label>
+                                    <select id="form-segmento" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 focus:bg-white focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white" required>
+                                        <option value="" disabled selected>Selecione...</option>
+                                        <option value="infantil_iniciais">Infantil / Iniciais</option>
+                                        <option value="finais_medio">Finais / Médio</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Natureza do Chamado</label>
-                                <select id="form-tipo" onchange="toggleFormFields(); updateTargetEmail();" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-sm dark:text-white" required>
+                                <select id="form-tipo" onchange="toggleFormFields(); updateTargetEmail();" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 focus:bg-white focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white" required>
                                     <option value="" disabled selected>Classifique sua necessidade...</option>
-                                    <option value="material">Solicitação de Material (Almoxarifado)</option>
-                                    <option value="administrativa">Demanda Administrativa / RH</option>
-                                    <option value="pedagogica">Apoio Pedagógico / Coordenação</option>
+                                    <option value="material">Material (Almoxarifado)</option>
+                                    <option value="administrativa">Administrativa / RH</option>
+                                    <option value="pedagogica">Apoio Pedagógico</option>
                                 </select>
                             </div>
 
                             <!-- Campos Dinâmicos -->
                             <div id="campos-dinamicos-container" class="hidden rounded-2xl border border-slate-200 dark:border-darkborder p-6 bg-slate-50/50 dark:bg-slate-800/30">
-                                
                                 <div id="campos-material" class="hidden space-y-4">
-                                    <h4 class="text-sm font-black text-primary dark:text-blue-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-box-open"></i> Especificação de Material</h4>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-500 mb-1">Nome do Solicitante</label>
-                                            <input type="text" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white">
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-500 mb-1">Turma Destino</label>
-                                            <input type="text" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white">
-                                        </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <input type="text" id="mat_turma" placeholder="Série / Turma" class="col-span-2 md:col-span-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
+                                        <input type="text" id="mat_evento" placeholder="Atividade Relacionada" class="col-span-2 md:col-span-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
                                     </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-500 mb-1">Descrição e Quantidade</label>
-                                        <textarea rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white resize-none" placeholder="Ex: 30x folhas EVA azul..."></textarea>
-                                    </div>
+                                    <textarea id="mat_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Qual material e quantidade?"></textarea>
                                 </div>
-
                                 <div id="campos-administrativa" class="hidden space-y-4">
-                                    <h4 class="text-sm font-black text-primary dark:text-blue-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-file-signature"></i> Dados Administrativos</h4>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-500 mb-1">Colaborador</label>
-                                            <input type="text" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white">
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-500 mb-1">Cargo Atual</label>
-                                            <input type="text" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-500 mb-1">Detalhamento</label>
-                                        <textarea rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white resize-none" placeholder="Ex: Ajuste de ponto referente ao dia..."></textarea>
-                                    </div>
+                                    <input type="text" id="adm_cargo" placeholder="Sua Função / Cargo Atual" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
+                                    <textarea id="adm_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Descreva sua solicitação (Folha, Ponto, Documentos...)"></textarea>
                                 </div>
-
                                 <div id="campos-pedagogica" class="hidden space-y-4">
-                                    <h4 class="text-sm font-black text-primary dark:text-blue-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-chalkboard-user"></i> Contexto Pedagógico</h4>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-500 mb-1">Professor(a)</label>
-                                            <input type="text" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white">
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-500 mb-1">Disciplina</label>
-                                            <input type="text" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-500 mb-1">Observações para Coordenação</label>
-                                        <textarea rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white resize-none" placeholder="Ex: Solicito reunião sobre projeto interdisciplinar..."></textarea>
-                                    </div>
+                                    <input type="text" id="ped_disc" placeholder="Disciplina" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
+                                    <textarea id="ped_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Descreva a demanda pedagógica..."></textarea>
                                 </div>
                             </div>
 
-                            <div id="indicador-email" class="hidden flex items-start gap-3 p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border-l-4 border-primary">
-                                <i class="fa-solid fa-share-nodes text-primary mt-1"></i>
-                                <div>
-                                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400">Roteamento Inteligente</p>
-                                    <p class="text-sm text-slate-800 dark:text-slate-300 mt-0.5">Chamado será encaminhado para: <strong id="target-email-display" class="text-primary dark:text-blue-400"></strong></p>
-                                </div>
+                            <div id="indicador-email" class="hidden p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border-l-4 border-primary">
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Roteamento Inteligente: <strong id="target-email-display" class="text-primary dark:text-blue-400"></strong></p>
                             </div>
 
-                            <button type="submit" class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-primary dark:hover:bg-slate-200 font-bold py-4 px-6 rounded-xl transition-all shadow-md flex items-center justify-center gap-3">
-                                Emitir Chamado <i class="fa-solid fa-arrow-right"></i>
+                            <button type="submit" id="btn-submit" class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-primary dark:hover:bg-slate-200 font-bold py-3 px-6 rounded-xl transition-all shadow-md">
+                                Emitir Chamado
                             </button>
                         </form>
 
-                        <div id="sucesso-modal" class="hidden mt-8 p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30 text-center">
-                            <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4 scale-in">
-                                <i class="fa-solid fa-check"></i>
-                            </div>
-                            <h4 class="font-black text-emerald-900 dark:text-emerald-400 text-lg">Chamado Aberto com Sucesso!</h4>
-                            <p class="text-sm text-emerald-700 dark:text-emerald-500 mt-2">O e-mail foi disparado para o setor responsável. Você pode acompanhar o andamento no painel.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ABA: AUTOMAÇÕES (NOVO RECURSO BASEADO NO PERFIL DO USUÁRIO) -->
-                <div id="automacoes" class="tab-content max-w-7xl mx-auto">
-                    <div class="mb-8">
-                        <h2 class="text-2xl font-black text-slate-900 dark:text-white">Central de Automações</h2>
-                        <p class="text-slate-500 mt-1">Acione fluxos de trabalho inteligentes integrados ao Microsoft 365 e sistemas de comunicação.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Automação 1: Sync M365 -->
-                        <div class="bg-white dark:bg-darkcard rounded-3xl p-6 border border-slate-200 dark:border-darkborder shadow-sm hover:border-blue-500 hover:shadow-lg transition-all group cursor-pointer">
-                            <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4"><i class="fa-brands fa-microsoft"></i></div>
-                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Sincronizar Diários M365</h3>
-                            <p class="text-sm text-slate-500 mb-6">Executa um fluxo Power Automate para transferir notas locais para a nuvem da Microsoft.</p>
-                            <button class="w-full py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold group-hover:bg-blue-600 group-hover:text-white transition">Executar Rotina</button>
-                        </div>
-                        
-                        <!-- Automação 2: Disparo Telegram -->
-                        <div class="bg-white dark:bg-darkcard rounded-3xl p-6 border border-slate-200 dark:border-darkborder shadow-sm hover:border-sky-500 hover:shadow-lg transition-all group cursor-pointer">
-                            <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl mb-4"><i class="fa-brands fa-telegram"></i></div>
-                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Avisos via Telegram</h3>
-                            <p class="text-sm text-slate-500 mb-6">Dispara um webhook n8n enviando lembretes automatizados aos grupos de responsáveis.</p>
-                            <button class="w-full py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold group-hover:bg-sky-500 group-hover:text-white transition">Configurar Disparo</button>
-                        </div>
-
-                        <!-- Automação 3: Relatórios IA -->
-                        <div class="bg-white dark:bg-darkcard rounded-3xl p-6 border border-slate-200 dark:border-darkborder shadow-sm hover:border-purple-500 hover:shadow-lg transition-all group cursor-pointer">
-                            <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-robot"></i></div>
-                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Parecer Descritivo IA</h3>
-                            <p class="text-sm text-slate-500 mb-6">Gera rascunhos de relatórios individuais de alunos usando o motor educacional inteligente.</p>
-                            <button class="w-full py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold group-hover:bg-purple-600 group-hover:text-white transition">Gerar Rascunhos</button>
+                        <div id="sucesso-modal" class="hidden mt-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30 text-center text-emerald-700 dark:text-emerald-400 font-bold">
+                            Chamado enviado com sucesso!
                         </div>
                     </div>
                 </div>
@@ -470,21 +331,21 @@
                 <!-- ABA: LINKS RÁPIDOS -->
                 <div id="links" class="tab-content max-w-7xl mx-auto">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center justify-center gap-4 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
-                            <div class="w-16 h-16 rounded-2xl bg-blue-50 dark:bg-slate-800 flex items-center justify-center text-2xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors"><i class="fa-solid fa-book-open-reader"></i></div>
+                        <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
+                            <div class="w-16 h-16 rounded-2xl bg-blue-50 dark:bg-slate-800 text-blue-600 flex items-center justify-center text-2xl group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-solid fa-book-open-reader"></i></div>
                             <span class="font-bold text-slate-800 dark:text-white">Portal SAS</span>
                         </a>
-                        <a href="https://escola.agendaedu.com" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center justify-center gap-4 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
-                            <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-slate-800 flex items-center justify-center text-2xl text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-slate-800 text-emerald-600 flex items-center justify-center text-2xl group-hover:bg-emerald-600 group-hover:text-white transition"><i class="fa-solid fa-mobile-screen"></i></div>
                             <span class="font-bold text-slate-800 dark:text-white">Agenda Edu</span>
                         </a>
-                        <a href="https://login.pearson.com/v1/piapi/iesui/signup?client_id=bWPoUiRnLpUhX2rhGeP4AaLCeyQYNYDA&login_success_url=https:%2F%2Fenglish-dashboard.pearson.com%2Fies-session%3FiesCode%3D7Y8oycLsUm&isMinor=true" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center justify-center gap-4 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
-                            <div class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-slate-800 flex items-center justify-center text-2xl text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors"><i class="fa-solid fa-language"></i></div>
+                        <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
+                            <div class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 flex items-center justify-center text-2xl group-hover:bg-indigo-600 group-hover:text-white transition"><i class="fa-solid fa-language"></i></div>
                             <span class="font-bold text-slate-800 dark:text-white">Portal PES</span>
                         </a>
-                        <a href="https://portalsas.com.br/login" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center justify-center gap-4 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
-                            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 flex items-center justify-center text-2xl text-orange-600 group-hover:bg-orange-500 group-hover:text-white transition-colors"><i class="fa-solid fa-chalkboard"></i></div>
-                            <span class="font-bold text-slate-800 dark:text-white text-center">Portal SAS</span>
+                        <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
+                            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 text-orange-600 flex items-center justify-center text-2xl group-hover:bg-orange-500 group-hover:text-white transition"><i class="fa-solid fa-chalkboard"></i></div>
+                            <span class="font-bold text-slate-800 dark:text-white">Classroom</span>
                         </a>
                     </div>
                 </div>
@@ -493,70 +354,35 @@
                 <div id="calendario" class="tab-content max-w-7xl mx-auto">
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder overflow-hidden">
                         <div class="p-6 border-b border-slate-100 dark:border-darkborder flex justify-between items-center bg-slate-50 dark:bg-slate-800/30">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Maio 2026</h3>
-                            <div class="flex gap-2">
-                                <button class="p-2.5 rounded-lg border border-slate-200 dark:border-darkborder hover:bg-slate-100 dark:hover:bg-slate-700 transition"><i class="fa-solid fa-chevron-left text-sm"></i></button>
-                                <button class="p-2.5 rounded-lg border border-slate-200 dark:border-darkborder hover:bg-slate-100 dark:hover:bg-slate-700 transition"><i class="fa-solid fa-chevron-right text-sm"></i></button>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Junho 2026</h3>
+                            <div class="flex gap-4 items-center">
+                                <!-- BOTÃO ADMIN -->
+                                <button class="admin-only hidden text-primary font-bold text-sm hover:underline"><i class="fa-solid fa-calendar-plus"></i> Cadastrar Evento</button>
+                                <div class="flex gap-2">
+                                    <button class="p-2.5 rounded-lg border border-slate-200 dark:border-darkborder hover:bg-slate-100 dark:hover:bg-slate-700 transition"><i class="fa-solid fa-chevron-left text-sm"></i></button>
+                                    <button class="p-2.5 rounded-lg border border-slate-200 dark:border-darkborder hover:bg-slate-100 dark:hover:bg-slate-700 transition"><i class="fa-solid fa-chevron-right text-sm"></i></button>
+                                </div>
                             </div>
                         </div>
-                        <div class="overflow-x-auto">
-                            <!-- Calendário em proporção larga (16:9 friendly) -->
-                            <div class="min-w-[800px] grid grid-cols-7 border-l border-t border-slate-100 dark:border-darkborder">
-                                <div class="p-3 text-center text-xs font-black text-slate-400 uppercase border-r border-b border-slate-100 dark:border-darkborder">Dom</div>
-                                <div class="p-3 text-center text-xs font-black text-slate-400 uppercase border-r border-b border-slate-100 dark:border-darkborder">Seg</div>
-                                <div class="p-3 text-center text-xs font-black text-slate-400 uppercase border-r border-b border-slate-100 dark:border-darkborder">Ter</div>
-                                <div class="p-3 text-center text-xs font-black text-slate-400 uppercase border-r border-b border-slate-100 dark:border-darkborder">Qua</div>
-                                <div class="p-3 text-center text-xs font-black text-slate-400 uppercase border-r border-b border-slate-100 dark:border-darkborder">Qui</div>
-                                <div class="p-3 text-center text-xs font-black text-slate-400 uppercase border-r border-b border-slate-100 dark:border-darkborder">Sex</div>
-                                <div class="p-3 text-center text-xs font-black text-slate-400 uppercase border-r border-b border-slate-100 dark:border-darkborder">Sáb</div>
-                                
-                                <!-- Dias simulados -->
-                                <div class="min-h-[120px] p-3 text-sm font-medium opacity-40 border-r border-b border-slate-100 dark:border-darkborder">26</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium opacity-40 border-r border-b border-slate-100 dark:border-darkborder">27</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium opacity-40 border-r border-b border-slate-100 dark:border-darkborder">28</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium opacity-40 border-r border-b border-slate-100 dark:border-darkborder">29</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium opacity-40 border-r border-b border-slate-100 dark:border-darkborder">30</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium border-r border-b border-slate-100 dark:border-darkborder">
-                                    <span class="w-7 h-7 flex items-center justify-center rounded-full bg-red-100 text-red-700 font-bold mb-2">1</span>
-                                    <div class="text-[10px] font-bold bg-red-50 text-red-600 p-1.5 rounded-md">Feriado Nacional</div>
-                                </div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium border-r border-b border-slate-100 dark:border-darkborder">2</div>
-                                
-                                <div class="min-h-[120px] p-3 text-sm font-medium border-r border-b border-slate-100 dark:border-darkborder">3</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium border-r border-b border-slate-100 dark:border-darkborder">4</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium border-r border-b border-slate-100 dark:border-darkborder">5</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium border-r border-b border-slate-100 dark:border-darkborder bg-blue-50/30 dark:bg-blue-900/10">
-                                    <span class="w-7 h-7 flex items-center justify-center rounded-full bg-primary text-white font-bold mb-2">6</span>
-                                    <div class="text-[10px] font-bold bg-blue-100 text-blue-700 p-1.5 rounded-md">Semana Pedagógica</div>
-                                </div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium border-r border-b border-slate-100 dark:border-darkborder">7</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium border-r border-b border-slate-100 dark:border-darkborder">8</div>
-                                <div class="min-h-[120px] p-3 text-sm font-medium border-r border-b border-slate-100 dark:border-darkborder">9</div>
-                            </div>
+                        <div class="p-10 text-center text-slate-500">
+                            <!-- Calendário simplificado para o MVP -->
+                            <i class="fa-regular fa-calendar-days text-4xl mb-4 opacity-50"></i>
+                            <p>Visualização de grade do calendário (Integração com Google Calendar)</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- ABA: BIBLIOTECA -->
                 <div id="biblioteca" class="tab-content max-w-7xl mx-auto">
-                    <div class="flex flex-col lg:flex-row gap-4 mb-8">
-                        <div class="flex-1 relative">
+                    <div class="flex flex-col lg:flex-row gap-4 mb-8 justify-between items-center">
+                        <div class="flex-1 w-full relative">
                             <i class="fa-solid fa-magnifying-glass absolute left-5 top-3.5 text-slate-400"></i>
-                            <input type="text" placeholder="Buscar modelos de provas, documentos..." class="w-full pl-12 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white shadow-sm">
+                            <input type="text" placeholder="Buscar documentos no Acervo Digital..." class="w-full pl-12 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white shadow-sm">
                         </div>
-                        <div class="grid grid-cols-2 gap-4 lg:w-96">
-                            <select class="px-4 py-3 rounded-2xl border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white shadow-sm font-medium">
-                                <option>Todos os Segmentos</option>
-                                <option>Infantil</option>
-                                <option>Fundamental</option>
-                                <option>Ensino Médio</option>
-                            </select>
-                            <select class="px-4 py-3 rounded-2xl border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white shadow-sm font-medium">
-                                <option>Categorias</option>
-                                <option>Provas</option>
-                                <option>Documentos</option>
-                            </select>
-                        </div>
+                        <!-- BOTÃO ADMIN -->
+                        <button class="admin-only hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-2xl text-sm font-bold shadow-sm transition hover:scale-105 shrink-0">
+                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Anexar Arquivo
+                        </button>
                     </div>
 
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder overflow-hidden">
@@ -566,53 +392,56 @@
                                     <tr class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider">
                                         <th class="p-5 font-bold">Arquivo</th>
                                         <th class="p-5 font-bold">Categoria</th>
-                                        <th class="p-5 font-bold">Data</th>
-                                        <th class="p-5 font-bold text-right">Ação</th>
+                                        <th class="p-5 font-bold text-right">Link (Google Drive)</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-100 dark:divide-darkborder text-sm text-slate-700 dark:text-slate-300">
                                     <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition group">
                                         <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-word text-blue-600 text-xl bg-blue-50 dark:bg-slate-800 p-2 rounded-lg"></i> Cabeçalho_Provas_2026.docx</td>
-                                        <td class="p-5">Modelos Institucionais</td>
-                                        <td class="p-5 text-slate-400">10/Fev/2026</td>
-                                        <td class="p-5 text-right"><button class="px-4 py-2 rounded-lg text-primary dark:text-white bg-blue-50 dark:bg-slate-800 hover:bg-primary hover:text-white transition font-bold text-xs">Download</button></td>
+                                        <td class="p-5">Modelos</td>
+                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Acessar no Drive</a></td>
                                     </tr>
                                     <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition group">
-                                        <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-pdf text-red-600 text-xl bg-red-50 dark:bg-slate-800 p-2 rounded-lg"></i> Diretrizes_Pedagogicas_Brisa.pdf</td>
-                                        <td class="p-5">Manuais e Documentos</td>
-                                        <td class="p-5 text-slate-400">05/Fev/2026</td>
-                                        <td class="p-5 text-right"><button class="px-4 py-2 rounded-lg text-primary dark:text-white bg-blue-50 dark:bg-slate-800 hover:bg-primary hover:text-white transition font-bold text-xs">Download</button></td>
+                                        <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-pdf text-red-600 text-xl bg-red-50 dark:bg-slate-800 p-2 rounded-lg"></i> Diretrizes_Breno_e_Equipe.pdf</td>
+                                        <td class="p-5">Manuais</td>
+                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Acessar no Drive</a></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-
-                <footer class="mt-16 pt-8 border-t border-slate-200 dark:border-darkborder text-center flex flex-col items-center justify-center">
-                    <div class="flex items-center gap-2 mb-3">
-                        <div class="w-6 h-6 rounded-md bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-bold text-[10px]">C2</div>
-                        <span class="font-bold text-slate-900 dark:text-white text-sm">Centro Cultural Pedro II</span>
-                    </div>
-                    <p class="text-xs text-slate-500 font-medium tracking-wide uppercase">Ensino de Excelência • 2026</p>
-                </footer>
             </div>
         </main>
     </div>
 
     <script>
-        // Configuração Google SSO
+        // CONFIGURAÇÃO DO GOOGLE SSO
+        // IMPORTANTE: Insira seu Client ID abaixo.
+        const GOOGLE_CLIENT_ID = "311519596922-t4q891vdfdk4ettk126fo0vuffgdr8su.apps.googleusercontent.com";
+        
+        // E-mails autorizados para ter permissão de Admnistrador (Edite a lista)
+        const ADMIN_EMAILS = [
+            'rhay@ccp2.com.br',
+            'coordenacao@ccp2.com.br',
+            'diretoria@ccp2.com.br'
+        ];
+
         window.onload = function () {
-            google.accounts.id.initialize({
-                client_id: "311519596922-t4q891vdfdk4ettk126fo0vuffgdr8su.apps.googleusercontent.com", 
-                callback: handleCredentialResponse,
-                context: "signin",
-                ux_mode: "popup"
-            });
-            google.accounts.id.renderButton(
-                document.getElementById("google-sso-btn"),
-                { theme: "outline", size: "large", shape: "pill", width: "300" }
-            );
+            if(GOOGLE_CLIENT_ID !== "COLE_AQUI_SEU_CLIENT_ID_DO_GOOGLE") {
+                google.accounts.id.initialize({
+                    client_id: GOOGLE_CLIENT_ID, 
+                    callback: handleCredentialResponse,
+                    context: "signin",
+                    ux_mode: "popup"
+                });
+                google.accounts.id.renderButton(
+                    document.getElementById("google-sso-btn"),
+                    { theme: "outline", size: "large", shape: "pill", width: "300" }
+                );
+            } else {
+                document.getElementById("google-sso-btn").innerHTML = '<p class="text-xs text-red-500 font-bold">⚠️ Insira o Client ID do Google no código fonte.</p>';
+            }
         };
 
         function parseJwt(token) {
@@ -626,29 +455,39 @@
 
         function handleCredentialResponse(response) {
             const userData = parseJwt(response.credential);
+            
             if (userData.email.endsWith('@ccp2.com.br')) {
-                document.getElementById('user-name').innerText = userData.name;
-                document.getElementById('user-email').innerText = userData.email;
-                document.getElementById('user-avatar').src = userData.picture;
-                enterPortal();
+                efetuarLogin(userData.name, userData.email, userData.picture);
             } else {
-                alert("Acesso exclusivo para contas @ccp2.com.br");
+                alert("Acesso negado. Utilize um e-mail @ccp2.com.br");
+                google.accounts.id.disableAutoSelect();
             }
         }
 
-        // Funções de UI
+        function efetuarLogin(nome, email, avatar) {
+            document.getElementById('user-name').innerText = nome;
+            document.getElementById('user-email').innerText = email;
+            document.getElementById('user-avatar').src = avatar;
+
+            // Verifica se o email logado tem permissão de Admin
+            if (ADMIN_EMAILS.includes(email)) {
+                // Habilita as funções escondidas
+                document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
+                document.getElementById('admin-badge').classList.remove('hidden');
+            }
+
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('dashboard-app').classList.remove('hidden');
+            document.getElementById('dashboard-app').style.opacity = 1;
+        }
+
+        // Função de escape para testes sem configurar o Google Cloud
         function enterAsDemo() {
-            document.getElementById('user-name').innerText = "Rhay V. (Admin)";
-            document.getElementById('user-email').innerText = "rhay@ccp2.com.br";
-            document.getElementById('user-avatar').src = "https://i.pravatar.cc/150?img=11";
-            enterPortal();
+            efetuarLogin("Rhay Rocha Vieira", "rhay@ccp2.com.br", "https://i.pravatar.cc/150?img=11");
         }
 
         function focarNoLogin() {
-            const el = document.getElementById('login-container');
-            el.scrollIntoView({ behavior: 'smooth' });
-            el.classList.add('ring-4', 'ring-primary/50', 'scale-105');
-            setTimeout(() => el.classList.remove('ring-4', 'ring-primary/50', 'scale-105'), 800);
+            document.getElementById('login-container').scrollIntoView({ behavior: 'smooth' });
         }
 
         function toggleSidebar() {
@@ -656,29 +495,20 @@
             document.getElementById('sidebar-overlay').classList.toggle('hidden');
         }
 
-        function enterPortal() {
-            document.getElementById('landing-page').classList.add('hidden');
-            const dash = document.getElementById('dashboard-app');
-            dash.classList.remove('hidden');
-            dash.style.opacity = 0;
-            setTimeout(() => { dash.style.transition = 'opacity 0.6s ease'; dash.style.opacity = 1; }, 50);
-        }
-
         function exitPortal() {
             document.getElementById('dashboard-app').classList.add('hidden');
             document.getElementById('landing-page').classList.remove('hidden');
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.add('hidden');
+            
+            // Reseta funções de Admin
+            document.querySelectorAll('.admin-only').forEach(el => el.classList.add('hidden'));
+            document.getElementById('admin-badge').classList.add('hidden');
+            
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                google.accounts.id.disableAutoSelect();
+            }
         }
 
-        const titles = {
-            'inicio': 'Visão Geral',
-            'solicitacoes': 'Central de Chamados',
-            'automacoes': 'Automações Pedagógicas',
-            'links': 'Hub de Ferramentas',
-            'calendario': 'Calendário letivo 2026',
-            'biblioteca': 'Acervo Digital'
-        };
+        const titles = { 'inicio': 'Visão Geral', 'solicitacoes': 'Gestão de Chamados', 'links': 'Ferramentas', 'calendario': 'Calendário Escolar', 'biblioteca': 'Acervo Digital' };
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -693,7 +523,9 @@
             activeBtn.classList.remove('text-slate-600', 'dark:text-slate-400');
             document.getElementById('page-title').innerText = titles[tabId];
 
-            if (window.innerWidth < 1024) toggleSidebar();
+            if (window.innerWidth < 1024 && !document.getElementById('sidebar').classList.contains('-translate-x-full')) {
+                toggleSidebar();
+            }
         }
 
         function toggleFormFields() {
@@ -716,8 +548,7 @@
             const unidade = document.getElementById('form-unidade').value;
             const tipo = document.getElementById('form-tipo').value;
             const indicador = document.getElementById('indicador-email');
-            const display = document.getElementById('target-email-display');
-
+            
             if (!unidade || !tipo) { indicador.classList.add('hidden'); return; }
 
             const emailMap = {
@@ -726,20 +557,74 @@
                 santa_cruz: { material: 'almoxarifado.santacruz@ccp2.com.br', administrativa: 'secretaria.santacruz@ccp2.com.br', pedagogica: 'coordenacao.santacruz@ccp2.com.br' }
             };
 
-            display.innerText = emailMap[unidade][tipo];
+            document.getElementById('target-email-display').innerText = emailMap[unidade][tipo];
             indicador.classList.remove('hidden');
         }
 
-        function handleFormSubmit(event) {
+        // INTEGRAÇÃO REAL COM O GOOGLE APPS SCRIPT
+        async function handleFormSubmit(event) {
             event.preventDefault();
-            const modal = document.getElementById('sucesso-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('form-solicitacao').reset();
-                toggleFormFields();
-                document.getElementById('indicador-email').classList.add('hidden');
-                modal.classList.add('hidden');
-            }, 4000);
+            
+            const btn = document.getElementById('btn-submit');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+            btn.disabled = true;
+
+            const tipo = document.getElementById('form-tipo').value;
+            let msgFormatada = "";
+
+            // Coleta os dados dependendo do tipo de chamado
+            if(tipo === 'material'){
+                msgFormatada = `Turma: ${document.getElementById('mat_turma').value} | Evento: ${document.getElementById('mat_evento').value} \nDescrição: ${document.getElementById('mat_desc').value}`;
+            } else if(tipo === 'administrativa') {
+                msgFormatada = `Cargo: ${document.getElementById('adm_cargo').value} \nDescrição: ${document.getElementById('adm_desc').value}`;
+            } else if(tipo === 'pedagogica') {
+                msgFormatada = `Disciplina: ${document.getElementById('ped_disc').value} \nDescrição: ${document.getElementById('ped_desc').value}`;
+            }
+
+            const dados = {
+                unidade: document.getElementById('form-unidade').value,
+                segmento: document.getElementById('form-segmento').value,
+                tipo: tipo,
+                emailDestino: document.getElementById('target-email-display').innerText,
+                nomeProfessor: document.getElementById('user-name').innerText,
+                mensagem: msgFormatada
+            };
+
+            try {
+                // IMPORTANTE: Insira a URL fornecida pelo Google Apps Script
+                const URL_DO_SCRIPT = "COLE_AQUI_A_URL_DO_SEU_GOOGLE_APPS_SCRIPT_IMPLANTADO";
+
+                if (URL_DO_SCRIPT === "COLE_AQUI_A_URL_DO_SEU_GOOGLE_APPS_SCRIPT_IMPLANTADO") {
+                    // Simulação para o Frontend não quebrar caso não tenha o Script ainda
+                    console.log("Simulando envio. Dados capturados:", dados);
+                    setTimeout(() => mostrarSucesso(), 1500);
+                } else {
+                    const response = await fetch(URL_DO_SCRIPT, {
+                        method: "POST",
+                        body: JSON.stringify(dados),
+                        headers: { "Content-Type": "text/plain;charset=utf-8" }
+                    });
+
+                    if(response.ok) {
+                        mostrarSucesso();
+                    }
+                }
+            } catch (erro) {
+                alert("Ocorreu um erro de conexão. Tente novamente.");
+                console.error(erro);
+            } finally {
+                btn.innerHTML = textoOriginal;
+                btn.disabled = false;
+            }
+        }
+
+        function mostrarSucesso() {
+            document.getElementById('sucesso-modal').classList.remove('hidden');
+            document.getElementById('form-solicitacao').reset();
+            toggleFormFields();
+            document.getElementById('indicador-email').classList.add('hidden');
+            setTimeout(() => document.getElementById('sucesso-modal').classList.add('hidden'), 5000);
         }
 
         function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
