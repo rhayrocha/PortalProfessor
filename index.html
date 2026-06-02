@@ -18,21 +18,14 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        primary: '#252E7F', 
-                        secondary: '#E53935',
-                        surface: '#f8fafc',
-                        darkbg: '#0B1120',
-                        darkcard: '#1e293b',
-                        darkborder: '#334155'
-                    }
+                    colors: { primary: '#252E7F', secondary: '#E53935', surface: '#f8fafc', darkbg: '#0B1120', darkcard: '#1e293b', darkborder: '#334155' }
                 }
             }
         }
     </script>
     
     <style>
-        .glass-panel { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.4); }
+        .glass-panel { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.4); }
         .dark .glass-panel { background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); }
         .tab-content { display: none; animation: slideUp 0.4s ease-out; }
         .tab-content.active { display: block; }
@@ -40,64 +33,43 @@
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .dark ::-webkit-scrollbar-thumb { background: #475569; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 transition-colors duration-300 antialiased">
 
+    <!-- LANDING PAGE -->
     <div id="landing-page" class="min-h-screen flex flex-col relative overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-400/20 dark:bg-blue-900/30 blur-[100px] pointer-events-none"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-red-400/10 dark:bg-red-900/20 blur-[100px] pointer-events-none"></div>
-
         <header class="glass-panel fixed w-full top-0 z-50 border-b border-white/20 dark:border-white/5">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">C2</div>
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-lg">C2</div>
                     <div class="flex flex-col">
                         <span class="font-extrabold text-xl text-slate-900 dark:text-white leading-tight">Centro Cultural Pedro II</span>
-                        <span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Portal do Professor</span>
+                        <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Portal do Professor</span>
                     </div>
                 </div>
-                <button onclick="focarNoLogin()" class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-full text-sm font-semibold transition-transform hover:scale-105 shadow-md">
-                    Entrar no Sistema
-                </button>
+                <button onclick="focarNoLogin()" class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-full text-sm font-semibold transition-transform hover:scale-105">Entrar no Sistema</button>
             </div>
         </header>
 
         <main class="flex-grow flex items-center pt-32 pb-16 relative z-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 flex flex-col items-start text-left">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-200 dark:border-blue-800/50">
-                        <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span></span>
-                        Sistema de Acesso Unificado
-                    </div>
                     <h1 class="text-5xl md:text-7xl font-black text-slate-900 dark:text-white leading-[1.1] mb-6 tracking-tight">
-                        Gestão acadêmica <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500">inteligente.</span>
+                        Gestão acadêmica <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500">inteligente.</span>
                     </h1>
-                    <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl leading-relaxed">
-                        Uma plataforma prática para otimizar a rotina docente. Centralize solicitações, consulte calendários e acesse o acervo digital em um só lugar.
-                    </p>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl">Plataforma interativa para centralizar chamados, comunicados e acervos digitais.</p>
                 </div>
                 
                 <div class="lg:col-span-5 flex justify-center lg:justify-end w-full">
-                    <div id="login-container" class="glass-panel p-8 md:p-10 rounded-[2rem] w-full max-w-md relative overflow-hidden transition-all shadow-xl">
-                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400"></div>
+                    <div id="login-container" class="glass-panel p-8 md:p-10 rounded-[2rem] w-full max-w-md relative shadow-xl">
                         <div class="text-center mb-8">
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Acesso Restrito</h3>
-                            <p class="text-sm text-slate-500 dark:text-slate-400">Utilize seu e-mail corporativo @ccp2.com.br</p>
+                            <p class="text-sm text-slate-500">Utilize seu e-mail corporativo @ccp2.com.br</p>
                         </div>
-                        
                         <div id="google-sso-btn" class="w-full flex justify-center mb-6"></div>
-                        
-                        <div class="relative flex items-center py-4">
-                            <div class="flex-grow border-t border-slate-200 dark:border-darkborder"></div>
-                            <span class="flex-shrink-0 mx-4 text-xs text-slate-400 font-medium">OU</span>
-                            <div class="flex-grow border-t border-slate-200 dark:border-darkborder"></div>
-                        </div>
-
-                        <button onclick="enterAsAdminDemo()" class="w-full py-3 px-4 rounded-xl border-2 border-slate-200 dark:border-darkborder text-slate-600 dark:text-slate-300 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                            <i class="fa-solid fa-laptop-code"></i> Login de Administração (TI)
+                        <button onclick="enterAsAdminDemo()" class="w-full py-3 px-4 rounded-xl border-2 border-slate-200 dark:border-darkborder text-slate-600 font-semibold text-sm hover:bg-slate-50 transition-colors">
+                            <i class="fa-solid fa-laptop-code"></i> Login de Administração (Demonstração)
                         </button>
                     </div>
                 </div>
@@ -105,371 +77,288 @@
         </main>
     </div>
 
+    <!-- DASHBOARD -->
     <div id="dashboard-app" class="hidden h-screen flex overflow-hidden bg-surface dark:bg-darkbg">
-        <div id="sidebar-overlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden transition-opacity"></div>
-
-        <aside id="sidebar" class="w-[280px] bg-white dark:bg-darkcard border-r border-slate-200 dark:border-darkborder flex flex-col fixed inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 lg:static transition-transform duration-300 ease-in-out z-50 h-full">
+        <aside id="sidebar" class="w-[280px] bg-white dark:bg-darkcard border-r border-slate-200 dark:border-darkborder flex flex-col fixed inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 lg:static transition-transform duration-300 z-50 h-full">
             <div class="h-20 flex items-center justify-between px-6 border-b border-slate-100 dark:border-darkborder">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-lg">C2</div>
                     <span class="font-bold text-lg text-slate-900 dark:text-white">Portal CCP2</span>
                 </div>
-                <button onclick="toggleSidebar()" class="text-slate-400 hover:text-slate-600 lg:hidden focus:outline-none">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
             </div>
             
             <div class="px-6 py-6 border-b border-slate-100 dark:border-darkborder">
                 <div class="flex items-center gap-4">
-                    <img id="user-avatar" src="" alt="Avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-100 dark:ring-darkborder">
+                    <img id="user-avatar" src="" alt="Avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-slate-100">
                     <div class="flex flex-col truncate">
                         <span id="user-name" class="text-sm font-bold text-slate-900 dark:text-white truncate"></span>
-                        <span id="user-email" class="text-xs text-slate-500 dark:text-slate-400 truncate"></span>
+                        <span id="user-email" class="text-xs text-slate-500 truncate"></span>
                         <span id="admin-badge" class="hidden mt-1 px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-md w-max border border-primary/20">Administrador TI</span>
                     </div>
                 </div>
             </div>
 
             <nav class="flex-1 py-6 px-4 space-y-2 overflow-y-auto">
-                <button onclick="switchTab('inicio')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left bg-slate-100 dark:bg-slate-800 text-primary dark:text-white font-semibold transition tab-btn" data-target="inicio">
-                    <i class="fa-solid fa-border-all w-5"></i> Visão Geral
-                </button>
-                <button onclick="switchTab('solicitacoes')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="solicitacoes">
-                    <i class="fa-solid fa-layer-group w-5"></i> Central de Chamados
-                </button>
-                <button onclick="switchTab('links')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="links">
-                    <i class="fa-solid fa-link w-5"></i> Ferramentas
-                </button>
-                <button onclick="switchTab('calendario')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="calendario">
-                    <i class="fa-regular fa-calendar w-5"></i> Calendário
-                </button>
-                <button onclick="switchTab('biblioteca')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition tab-btn" data-target="biblioteca">
-                    <i class="fa-regular fa-folder-open w-5"></i> Biblioteca e Manuais
-                </button>
+                <button onclick="switchTab('inicio')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left bg-slate-100 dark:bg-slate-800 text-primary dark:text-white font-semibold transition tab-btn" data-target="inicio"><i class="fa-solid fa-border-all w-5"></i> Visão Geral</button>
+                <button onclick="switchTab('solicitacoes')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition tab-btn" data-target="solicitacoes"><i class="fa-solid fa-layer-group w-5"></i> Gestão de Chamados</button>
+                <button onclick="switchTab('biblioteca')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition tab-btn" data-target="biblioteca"><i class="fa-regular fa-folder-open w-5"></i> Acervo Digital</button>
+                <button onclick="switchTab('calendario')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition tab-btn" data-target="calendario"><i class="fa-regular fa-calendar w-5"></i> Calendário Institucional</button>
             </nav>
-
             <div class="p-4 border-t border-slate-100 dark:border-darkborder space-y-2">
-                <button onclick="toggleDarkMode()" class="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-                    <span class="flex items-center gap-3"><i class="fa-solid fa-moon w-4"></i> Tema Escuro</span>
-                </button>
-                <button onclick="exitPortal()" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
-                    <i class="fa-solid fa-arrow-right-from-bracket w-4"></i> Encerrar Sessão
-                </button>
+                <button onclick="toggleDarkMode()" class="w-full flex items-center px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition"><i class="fa-solid fa-moon w-5 mr-2"></i> Tema Escuro</button>
+                <button onclick="exitPortal()" class="w-full flex items-center px-4 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition"><i class="fa-solid fa-arrow-right-from-bracket w-5 mr-2"></i> Encerrar Sessão</button>
             </div>
         </aside>
 
         <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
-            <header class="h-20 bg-surface/80 dark:bg-darkbg/80 backdrop-blur-md flex items-center justify-between px-6 lg:px-10 z-10 sticky top-0 border-b border-transparent shadow-sm">
-                <div class="flex items-center gap-4">
-                    <button onclick="toggleSidebar()" class="p-2 -ml-2 rounded-lg text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-800 lg:hidden transition">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
-                    <h2 id="page-title" class="text-xl font-bold text-slate-900 dark:text-white">Visão Geral</h2>
-                </div>
+            <header class="h-20 bg-surface/80 dark:bg-darkbg/80 backdrop-blur-md flex items-center px-6 lg:px-10 z-10 sticky top-0 shadow-sm border-b border-transparent">
+                <h2 id="page-title" class="text-xl font-bold text-slate-900 dark:text-white">Visão Geral</h2>
             </header>
 
             <div class="flex-1 overflow-y-auto p-6 lg:p-10 relative">
                 
+                <!-- ABA INÍCIO (MURAL) -->
                 <div id="inicio" class="tab-content active max-w-7xl mx-auto">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                        <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder hover:shadow-md transition">
-                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Mural de Avisos</p>
-                            <h3 class="text-4xl font-black text-slate-900 dark:text-white">01</h3>
-                        </div>
-                        <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder hover:shadow-md transition">
-                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Meus Chamados</p>
-                            <h3 class="text-4xl font-black text-slate-900 dark:text-white">0</h3>
-                        </div>
-                        <div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder hover:shadow-md transition sm:col-span-2 lg:col-span-1">
-                            <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-4">Sistema Acadêmico</p>
-                            <h3 class="text-xl font-bold text-emerald-500 mt-1"><i class="fa-solid fa-check-circle mr-1"></i> Operacional</h3>
-                            <p class="text-xs text-slate-500 font-medium mt-2">Nenhuma instabilidade detectada.</p>
-                        </div>
-                    </div>
-                    
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder p-8">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="text-lg font-bold text-slate-900 dark:text-white">Mural da Coordenação</h3>
-                            <button class="admin-only hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition hover:scale-105">
+                            <button onclick="abrirModal('modal-aviso')" class="admin-only hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition hover:scale-105">
                                 <i class="fa-solid fa-plus mr-1"></i> Novo Aviso
                             </button>
                         </div>
-                        <div class="space-y-4">
-                            <div class="flex gap-5 p-5 rounded-2xl bg-blue-50/50 dark:bg-slate-800/50 border border-blue-100 dark:border-slate-700">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-bullhorn"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-slate-900 dark:text-white">Padrão de Mídia para as Telas Interativas</h4>
-                                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Aviso da Coordenação (Maciel): Solicitamos que todo material multimídia e slide deck para as novas telas de LED sejam criados obrigatoriamente na proporção 16:9.</p>
-                                    <span class="text-[10px] font-bold text-slate-400 uppercase mt-3 inline-block">Postado recentemente</span>
-                                </div>
-                            </div>
+                        <div id="lista-avisos" class="space-y-4">
+                            <!-- Avisos injetados pelo JS aqui -->
                         </div>
                     </div>
                 </div>
 
-                <div id="solicitacoes" class="tab-content max-w-5xl mx-auto">
+                <!-- ABA SOLICITAÇÕES -->
+                <div id="solicitacoes" class="tab-content max-w-7xl mx-auto">
                     
-                    <div class="admin-only hidden mb-10 bg-slate-900 dark:bg-slate-800 rounded-3xl p-6 shadow-lg border border-slate-800 dark:border-slate-700">
+                    <!-- PAINEL ADMIN (CAIXA DE ENTRADA) -->
+                    <div class="admin-only hidden mb-10 bg-slate-900 dark:bg-slate-800 rounded-3xl p-6 shadow-lg border border-slate-800">
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-inbox text-blue-400 mr-2"></i> Caixa de Entrada Institucional</h3>
-                            <span class="text-xs font-bold bg-red-500 text-white px-2 py-1 rounded-md">2 Pendentes</span>
+                            <span id="contador-pendentes" class="text-xs font-bold bg-red-500 text-white px-2 py-1 rounded-md">0 Pendentes</span>
                         </div>
-                        <div class="bg-slate-800 dark:bg-slate-900 rounded-2xl overflow-hidden">
-                            <table class="w-full text-left text-sm text-slate-300">
+                        <div class="bg-slate-800 dark:bg-slate-900 rounded-2xl overflow-hidden overflow-x-auto">
+                            <table class="w-full text-left text-sm text-slate-300 min-w-[700px]">
                                 <tr class="bg-slate-800 border-b border-slate-700">
-                                    <th class="p-4 font-semibold">Requerente (Equipe)</th>
+                                    <th class="p-4 font-semibold">Data</th>
+                                    <th class="p-4 font-semibold">Requerente</th>
                                     <th class="p-4 font-semibold">Tipo</th>
-                                    <th class="p-4 font-semibold">Status</th>
-                                    <th class="p-4 font-semibold text-right">Ação</th>
+                                    <th class="p-4 font-semibold">Descrição</th>
+                                    <th class="p-4 font-semibold text-center">Status</th>
                                 </tr>
-                                <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition">
-                                    <td class="p-4 font-medium text-white">Sofia (Unidade Brisa)</td>
-                                    <td class="p-4">Material</td>
-                                    <td class="p-4"><span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded-md text-xs font-bold">Pendente</span></td>
-                                    <td class="p-4 text-right">
-                                        <button class="bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Analisar</button>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition">
-                                    <td class="p-4 font-medium text-white">Vitor (Unidade Santíssimo)</td>
-                                    <td class="p-4">Suporte TI</td>
-                                    <td class="p-4"><span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded-md text-xs font-bold">Pendente</span></td>
-                                    <td class="p-4 text-right">
-                                        <button class="bg-primary hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Analisar</button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-slate-700/30 transition">
-                                    <td class="p-4">Breno (Unidade Santa Cruz)</td>
-                                    <td class="p-4">Administrativa</td>
-                                    <td class="p-4"><span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-md text-xs font-bold">Concluído</span></td>
-                                    <td class="p-4 text-right">
-                                        <button class="bg-slate-600 hover:bg-slate-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Histórico</button>
-                                    </td>
-                                </tr>
+                                <tbody id="tabela-chamados-admin" class="divide-y divide-slate-700/50">
+                                    <!-- Chamados injetados aqui -->
+                                </tbody>
                             </table>
                         </div>
                     </div>
 
+                    <!-- FORMULÁRIO DO PROFESSOR -->
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder p-6 md:p-10">
                         <div class="flex items-center gap-4 mb-8 border-b border-slate-100 dark:border-darkborder pb-6">
                             <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl"><i class="fa-solid fa-plus"></i></div>
                             <div>
                                 <h3 class="text-xl font-bold text-slate-900 dark:text-white">Nova Solicitação</h3>
-                                <p class="text-sm text-slate-500 dark:text-slate-400">Preencha os dados para registrar e rotear seu chamado.</p>
+                                <p class="text-sm text-slate-500">Registre sua solicitação para a equipe correspondente.</p>
                             </div>
                         </div>
                         
-                        <form id="form-solicitacao" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <form id="form-solicitacao" onsubmit="enviarChamado(event)" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Unidade</label>
-                                    <select id="form-unidade" onchange="updateTargetEmail()" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 focus:bg-white focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white" required>
+                                    <select id="form-unidade" onchange="updateTargetEmail()" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 outline-none text-sm dark:text-white" required>
                                         <option value="" disabled selected>Selecione...</option>
-                                        <option value="brisa">Brisa</option>
-                                        <option value="santissimo">Santíssimo</option>
-                                        <option value="santa_cruz">Santa Cruz</option>
+                                        <option value="Brisa">Brisa</option>
+                                        <option value="Santíssimo">Santíssimo</option>
+                                        <option value="Santa Cruz">Santa Cruz</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Segmento</label>
-                                    <select id="form-segmento" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 focus:bg-white focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white" required>
+                                    <select id="form-segmento" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 outline-none text-sm dark:text-white" required>
                                         <option value="" disabled selected>Selecione...</option>
-                                        <option value="infantil_iniciais">Infantil / Iniciais</option>
-                                        <option value="finais_medio">Finais / Médio</option>
-                                        <option value="ti_infra">TI / Infraestrutura</option>
+                                        <option value="Infantil">Educação Infantil</option>
+                                        <option value="Ensino Médio">Ensino Médio</option>
+                                        <option value="TI">TI / Infraestrutura</option>
                                     </select>
                                 </div>
                             </div>
-
                             <div>
                                 <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Natureza do Chamado</label>
-                                <select id="form-tipo" onchange="toggleFormFields(); updateTargetEmail();" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 focus:bg-white focus:ring-2 focus:ring-primary outline-none text-sm dark:text-white" required>
+                                <select id="form-tipo" onchange="updateTargetEmail()" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 outline-none text-sm dark:text-white" required>
                                     <option value="" disabled selected>Classifique sua necessidade...</option>
-                                    <option value="material">Material (Almoxarifado)</option>
-                                    <option value="administrativa">Administrativa / RH</option>
-                                    <option value="pedagogica">Apoio Pedagógico</option>
-                                    <option value="suporte_ti">Suporte Técnico / Redes</option>
+                                    <option value="Material">Material (Almoxarifado)</option>
+                                    <option value="Administrativa">Administrativa / RH</option>
+                                    <option value="Suporte TI">Suporte Técnico / Equipamento</option>
                                 </select>
                             </div>
+                            <textarea id="form-desc" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-darkborder bg-slate-50 dark:bg-slate-800 outline-none text-sm dark:text-white resize-none" placeholder="Descreva detalhadamente sua solicitação..." required></textarea>
 
-                            <div id="campos-dinamicos-container" class="hidden rounded-2xl border border-slate-200 dark:border-darkborder p-6 bg-slate-50/50 dark:bg-slate-800/30">
-                                
-                                <div id="campos-material" class="hidden space-y-4">
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <input type="text" id="mat_turma" placeholder="Série / Turma" class="col-span-2 md:col-span-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
-                                        <input type="text" id="mat_evento" placeholder="Atividade Relacionada" class="col-span-2 md:col-span-1 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
-                                    </div>
-                                    <textarea id="mat_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Especifique o material e a quantidade..."></textarea>
-                                </div>
-                                
-                                <div id="campos-administrativa" class="hidden space-y-4">
-                                    <input type="text" id="adm_cargo" placeholder="Sua Função / Cargo Atual" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
-                                    <textarea id="adm_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Descreva sua solicitação de RH/Administrativa..."></textarea>
-                                </div>
-                                
-                                <div id="campos-pedagogica" class="hidden space-y-4">
-                                    <input type="text" id="ped_disc" placeholder="Disciplina" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
-                                    <textarea id="ped_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Descreva a demanda pedagógica..."></textarea>
-                                </div>
-
-                                <div id="campos-suporte_ti" class="hidden space-y-4">
-                                    <input type="text" id="ti_equip" placeholder="Equipamento (Ex: Switch Cisco, Tela LED, Notebook)" class="w-full px-4 py-2.5 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white">
-                                    <textarea id="ti_desc" rows="3" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white resize-none" placeholder="Descreva o problema de rede, infraestrutura ou sistema..."></textarea>
-                                </div>
+                            <div id="indicador-email" class="hidden p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border-l-4 border-primary text-xs text-slate-500">
+                                O e-mail será disparado para <strong id="target-email-display" class="text-primary dark:text-blue-400"></strong>
                             </div>
 
-                            <div id="indicador-email" class="hidden p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border-l-4 border-primary">
-                                <p class="text-xs text-slate-500 dark:text-slate-400">Fluxo Automático: O chamado será enviado para <strong id="target-email-display" class="text-primary dark:text-blue-400"></strong></p>
-                            </div>
-
-                            <button type="submit" id="btn-submit" class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-primary dark:hover:bg-slate-200 font-bold py-3 px-6 rounded-xl transition-all shadow-md">
+                            <button type="submit" id="btn-submit" class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-primary font-bold py-3 px-6 rounded-xl transition-all shadow-md">
                                 Emitir Chamado
                             </button>
                         </form>
-
-                        <div id="sucesso-modal" class="hidden mt-6 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30 text-center text-emerald-700 dark:text-emerald-400 font-bold">
-                            <i class="fa-solid fa-circle-check mr-2"></i> Solicitação enviada com sucesso!
-                        </div>
-                        <div id="erro-modal" class="hidden mt-6 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30 text-center text-red-700 dark:text-red-400 font-bold">
-                            <i class="fa-solid fa-circle-exclamation mr-2"></i> Erro ao enviar. Verifique o console.
-                        </div>
                     </div>
                 </div>
 
-                <div id="links" class="tab-content max-w-7xl mx-auto">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
-                            <div class="w-16 h-16 rounded-2xl bg-blue-50 dark:bg-slate-800 text-blue-600 flex items-center justify-center text-2xl group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-solid fa-book-open-reader"></i></div>
-                            <span class="font-bold text-slate-800 dark:text-white">Portal SAS</span>
-                        </a>
-                        <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
-                            <div class="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-slate-800 text-emerald-600 flex items-center justify-center text-2xl group-hover:bg-emerald-600 group-hover:text-white transition"><i class="fa-solid fa-mobile-screen"></i></div>
-                            <span class="font-bold text-slate-800 dark:text-white">Agenda Edu</span>
-                        </a>
-                        <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
-                            <div class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 flex items-center justify-center text-2xl group-hover:bg-indigo-600 group-hover:text-white transition"><i class="fa-solid fa-network-wired"></i></div>
-                            <span class="font-bold text-slate-800 dark:text-white">Rede UniFi</span>
-                        </a>
-                        <a href="#" class="bg-white dark:bg-darkcard p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex flex-col items-center gap-4 hover:-translate-y-1 transition group">
-                            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 text-orange-600 flex items-center justify-center text-2xl group-hover:bg-orange-500 group-hover:text-white transition"><i class="fa-brands fa-microsoft"></i></div>
-                            <span class="font-bold text-slate-800 dark:text-white text-center">Microsoft 365</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div id="calendario" class="tab-content max-w-7xl mx-auto">
-                    <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder overflow-hidden">
-                        <div class="p-6 border-b border-slate-100 dark:border-darkborder flex justify-between items-center bg-slate-50 dark:bg-slate-800/30">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Agenda Institucional</h3>
-                            <div class="flex gap-4 items-center">
-                                <button class="admin-only hidden text-primary font-bold text-sm hover:underline"><i class="fa-solid fa-calendar-plus"></i> Agendar</button>
-                            </div>
-                        </div>
-                        <div class="p-10 text-center text-slate-500">
-                            <i class="fa-regular fa-calendar-days text-4xl mb-4 opacity-50"></i>
-                            <p>Sincronização com o Calendário do Google Workspace ocorrerá nesta seção.</p>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- ABA BIBLIOTECA -->
                 <div id="biblioteca" class="tab-content max-w-7xl mx-auto">
-                    <div class="flex flex-col lg:flex-row gap-4 mb-8 justify-between items-center">
-                        <div class="flex-1 w-full relative">
-                            <i class="fa-solid fa-magnifying-glass absolute left-5 top-3.5 text-slate-400"></i>
-                            <input type="text" placeholder="Buscar documentos no Google Drive integrado..." class="w-full pl-12 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard outline-none text-sm dark:text-white shadow-sm">
-                        </div>
-                        <button class="admin-only hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-2xl text-sm font-bold shadow-sm transition hover:scale-105 shrink-0">
-                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Enviar Arquivo
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Acervo Digital</h3>
+                        <button onclick="abrirModal('modal-arquivo')" class="admin-only hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-xl text-sm font-bold shadow-sm transition hover:scale-105">
+                            <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Anexar Link G-Drive
                         </button>
                     </div>
-
                     <div class="bg-white dark:bg-darkcard rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider">
-                                        <th class="p-5 font-bold">Arquivo (G-Drive)</th>
-                                        <th class="p-5 font-bold">Categoria</th>
-                                        <th class="p-5 font-bold text-right">Acesso</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-slate-100 dark:divide-darkborder text-sm text-slate-700 dark:text-slate-300">
-                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition group">
-                                        <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-word text-blue-600 text-xl bg-blue-50 dark:bg-slate-800 p-2 rounded-lg"></i> Cabeçalho_Provas_2026.docx</td>
-                                        <td class="p-5">Modelos</td>
-                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Abrir Drive</a></td>
-                                    </tr>
-                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition group">
-                                        <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-pdf text-red-600 text-xl bg-red-50 dark:bg-slate-800 p-2 rounded-lg"></i> Politica_Impressao_NDD.pdf</td>
-                                        <td class="p-5">TI / Infraestrutura</td>
-                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Abrir Drive</a></td>
-                                    </tr>
-                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition group">
-                                        <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-pdf text-red-600 text-xl bg-red-50 dark:bg-slate-800 p-2 rounded-lg"></i> Licenciamento_Microsoft_M365.pdf</td>
-                                        <td class="p-5">TI / Compras</td>
-                                        <td class="p-5 text-right"><a href="#" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Abrir Drive</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-500">
+                                <tr><th class="p-5 font-bold">Arquivo</th><th class="p-5 font-bold">Categoria</th><th class="p-5 font-bold text-right">Acesso</th></tr>
+                            </thead>
+                            <tbody id="lista-arquivos" class="divide-y divide-slate-100 dark:divide-darkborder text-slate-700 dark:text-slate-300">
+                                <!-- Injetado via JS -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+
+                <!-- ABA CALENDÁRIO -->
+                <div id="calendario" class="tab-content max-w-7xl mx-auto">
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Eventos Agendados</h3>
+                        <button onclick="abrirModal('modal-evento')" class="admin-only hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-xl text-sm font-bold shadow-sm transition hover:scale-105">
+                            <i class="fa-solid fa-calendar-plus mr-2"></i> Cadastrar Evento
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="lista-eventos">
+                        <!-- Injetado via JS -->
+                    </div>
+                </div>
+
             </div>
         </main>
     </div>
 
-    <script>
-        // ==========================================
-        // 1. CONFIGURAÇÕES PRINCIPAIS (COLE AQUI)
-        // ==========================================
-        const GOOGLE_CLIENT_ID = "311519596922-t4q891vdfdk4ettk126fo0vuffgdr8su.apps.googleusercontent.com"; // Ex: xxxx.apps.googleusercontent.com
-        const URL_DO_SCRIPT = "https://script.google.com/macros/s/AKfycbxPX1kMGgneypVHFKcQgyzveu678JiRtS0uY-waGrgUijDYoTIW9G0bifNksG_ZaM55/exec"; // URL gerada no Passo 1
-        
-        // E-mails que terão acesso à visão de Administrador no Portal
-        const ADMIN_EMAILS = [
-            'rhay@ccp2.com.br',
-            'maciel@ccp2.com.br',
-            'adm@ccp2.com.br'
-        ];
+    <!-- ========================================== -->
+    <!-- MODAIS ADMINISTRATIVOS (POP-UPS) -->
+    <!-- ========================================== -->
 
-        // ==========================================
-        // 2. LÓGICA DE AUTENTICAÇÃO (SSO)
-        // ==========================================
-        window.onload = function () {
+    <!-- Modal Novo Aviso -->
+    <div id="modal-aviso" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-darkcard w-full max-w-md rounded-3xl p-8 shadow-2xl">
+            <h3 class="text-xl font-bold mb-4 dark:text-white">Publicar no Mural</h3>
+            <form onsubmit="salvarAviso(event)" class="space-y-4">
+                <input type="text" id="aviso-titulo" placeholder="Título do Aviso" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-darkborder outline-none dark:text-white">
+                <textarea id="aviso-desc" rows="4" placeholder="Mensagem completa..." required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-darkborder outline-none dark:text-white resize-none"></textarea>
+                <div class="flex gap-3 justify-end mt-4">
+                    <button type="button" onclick="fecharModal('modal-aviso')" class="px-5 py-2.5 text-slate-500 font-bold hover:bg-slate-100 rounded-xl">Cancelar</button>
+                    <button type="submit" class="px-5 py-2.5 bg-primary text-white font-bold rounded-xl shadow-md">Publicar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Novo Arquivo -->
+    <div id="modal-arquivo" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-darkcard w-full max-w-md rounded-3xl p-8 shadow-2xl">
+            <h3 class="text-xl font-bold mb-4 dark:text-white">Adicionar ao Acervo</h3>
+            <form onsubmit="salvarArquivo(event)" class="space-y-4">
+                <input type="text" id="arq-nome" placeholder="Nome do Arquivo (Ex: Prova_2026.pdf)" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 outline-none dark:text-white">
+                <select id="arq-cat" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 outline-none dark:text-white">
+                    <option value="Manuais">Manuais da Coordenação</option>
+                    <option value="Modelos">Modelos de Provas</option>
+                    <option value="TI">Políticas de TI</option>
+                </select>
+                <input type="url" id="arq-link" placeholder="Link de compartilhamento (Google Drive)" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 outline-none dark:text-white">
+                <div class="flex gap-3 justify-end mt-4">
+                    <button type="button" onclick="fecharModal('modal-arquivo')" class="px-5 py-2.5 text-slate-500 font-bold hover:bg-slate-100 rounded-xl">Cancelar</button>
+                    <button type="submit" class="px-5 py-2.5 bg-primary text-white font-bold rounded-xl shadow-md">Salvar Arquivo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Novo Evento -->
+    <div id="modal-evento" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-darkcard w-full max-w-md rounded-3xl p-8 shadow-2xl">
+            <h3 class="text-xl font-bold mb-4 dark:text-white">Cadastrar Evento</h3>
+            <form onsubmit="salvarEvento(event)" class="space-y-4">
+                <input type="text" id="ev-titulo" placeholder="Nome do Evento" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 outline-none">
+                <input type="date" id="ev-data" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 outline-none">
+                <div class="flex gap-3 justify-end mt-4">
+                    <button type="button" onclick="fecharModal('modal-evento')" class="px-5 py-2.5 text-slate-500 font-bold hover:bg-slate-100 rounded-xl">Cancelar</button>
+                    <button type="submit" class="px-5 py-2.5 bg-primary text-white font-bold rounded-xl shadow-md">Agendar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // ==============================================================
+        // CONFIGURAÇÕES GERAIS E E-MAILS ADMIN
+        // ==============================================================
+        const GOOGLE_CLIENT_ID = "311519596922-t4q891vdfdk4ettk126fo0vuffgdr8su.apps.googleusercontent.com"; 
+        const URL_DO_SCRIPT = "https://script.google.com/macros/s/AKfycbxPX1kMGgneypVHFKcQgyzveu678JiRtS0uY-waGrgUijDYoTIW9G0bifNksG_ZaM55/exec";
+        
+        const ADMIN_EMAILS = ['rhay@ccp2.com.br', 'maciel@ccp2.com.br', 'adm@ccp2.com.br'];
+
+        // ==============================================================
+        // BANCO DE DADOS LOCAL (PERMITE QUE O PROTÓTIPO FUNCIONE IMEDIATAMENTE)
+        // ==============================================================
+        function getLocalData(key, defaultData) {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : defaultData;
+        }
+        function setLocalData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        // Dados Iniciais Falsos para a Apresentação
+        const defaultAvisos = [{ titulo: "Padronização de Telas Interativas", desc: "Aviso da Coordenação: Solicitamos que todo material multimídia para as novas telas sejam na proporção 16:9.", data: "Postado recentemente" }];
+        const defaultArquivos = [{ nome: "Licenciamento_Microsoft_M365.pdf", cat: "TI", link: "#" }];
+        const defaultEventos = [{ titulo: "Conselho de Classe", data: "2026-06-15" }];
+        const defaultChamados = [];
+
+        // Inicializa Banco
+        let avisos = getLocalData('ccp2_avisos', defaultAvisos);
+        let arquivos = getLocalData('ccp2_arquivos', defaultArquivos);
+        let eventos = getLocalData('ccp2_eventos', defaultEventos);
+        let chamados = getLocalData('ccp2_chamados', defaultChamados);
+
+        window.onload = function() {
+            renderizarTelas();
             if(GOOGLE_CLIENT_ID && !GOOGLE_CLIENT_ID.includes("COLE_AQUI")) {
-                google.accounts.id.initialize({
-                    client_id: GOOGLE_CLIENT_ID, 
-                    callback: handleCredentialResponse,
-                    context: "signin",
-                    ux_mode: "popup"
-                });
-                google.accounts.id.renderButton(
-                    document.getElementById("google-sso-btn"),
-                    { theme: "outline", size: "large", shape: "pill", width: "300" }
-                );
-            } else {
-                document.getElementById("google-sso-btn").innerHTML = '<p class="text-xs text-red-500 font-bold p-4 bg-red-50 rounded-xl">⚠️ Google Client ID não configurado.</p>';
+                google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: handleCredentialResponse });
+                google.accounts.id.renderButton(document.getElementById("google-sso-btn"), { theme: "outline", size: "large", shape: "pill", width: "300" });
             }
         };
 
+        // ==============================================================
+        // LÓGICA DE LOGIN (SSO & DEMO)
+        // ==============================================================
         function parseJwt(token) {
             var base64Url = token.split('.')[1];
             var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-                return '%' + ('0' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-            return JSON.parse(jsonPayload);
+            return JSON.parse(decodeURIComponent(window.atob(base64).split('').map(c => '%' + ('0' + c.charCodeAt(0).toString(16)).slice(-2)).join('')));
         }
 
         function handleCredentialResponse(response) {
             const userData = parseJwt(response.credential);
-            
-            if (userData.email.endsWith('@ccp2.com.br')) {
-                efetuarLogin(userData.name, userData.email, userData.picture);
-            } else {
-                alert("Acesso Negado.\nUtilize sua conta corporativa @ccp2.com.br");
-                google.accounts.id.disableAutoSelect();
-            }
+            if (userData.email.endsWith('@ccp2.com.br')) efetuarLogin(userData.name, userData.email, userData.picture);
+            else alert("Acesso Negado.");
+        }
+
+        function enterAsAdminDemo() {
+            efetuarLogin("Rhay Rocha Vieira (TI)", "rhay@ccp2.com.br", "https://i.pravatar.cc/150?img=11");
         }
 
         function efetuarLogin(nome, email, avatar) {
@@ -477,7 +366,6 @@
             document.getElementById('user-email').innerText = email;
             document.getElementById('user-avatar').src = avatar;
 
-            // Ativa o Modo Admin se o email estiver na lista de permissões
             if (ADMIN_EMAILS.includes(email)) {
                 document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
                 document.getElementById('admin-badge').classList.remove('hidden');
@@ -485,171 +373,167 @@
 
             document.getElementById('landing-page').classList.add('hidden');
             document.getElementById('dashboard-app').classList.remove('hidden');
-            document.getElementById('dashboard-app').style.opacity = 1;
         }
 
-        // Login Fake apenas para você testar as abas de Admin agora
-        function enterAsAdminDemo() {
-            efetuarLogin("Rhay Rocha Vieira (TI)", "rhay@ccp2.com.br", "https://i.pravatar.cc/150?img=11");
+        function exitPortal() { location.reload(); }
+
+        // ==============================================================
+        // NAVEGAÇÃO E MODAIS
+        // ==============================================================
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-primary', 'dark:text-white'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.tab-btn[data-target="${tabId}"]`).classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-primary', 'dark:text-white');
+            if (window.innerWidth < 1024) toggleSidebar();
         }
 
-        function focarNoLogin() {
-            document.getElementById('login-container').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function exitPortal() {
-            document.getElementById('dashboard-app').classList.add('hidden');
-            document.getElementById('landing-page').classList.remove('hidden');
-            
-            document.querySelectorAll('.admin-only').forEach(el => el.classList.add('hidden'));
-            document.getElementById('admin-badge').classList.add('hidden');
-            
-            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-                google.accounts.id.disableAutoSelect();
-            }
-        }
-
-        // ==========================================
-        // 3. NAVEGAÇÃO E UI
-        // ==========================================
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('-translate-x-full');
             document.getElementById('sidebar-overlay').classList.toggle('hidden');
         }
 
-        const titles = { 'inicio': 'Visão Geral', 'solicitacoes': 'Central de Chamados', 'links': 'Ferramentas', 'calendario': 'Calendário Institucional', 'biblioteca': 'Acervo Digital' };
-
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-primary', 'dark:text-white');
-                el.classList.add('text-slate-600', 'dark:text-slate-400');
-            });
-            
-            document.getElementById(tabId).classList.add('active');
-            const activeBtn = document.querySelector(`.tab-btn[data-target="${tabId}"]`);
-            activeBtn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-primary', 'dark:text-white');
-            activeBtn.classList.remove('text-slate-600', 'dark:text-slate-400');
-            document.getElementById('page-title').innerText = titles[tabId];
-
-            if (window.innerWidth < 1024 && !document.getElementById('sidebar').classList.contains('-translate-x-full')) {
-                toggleSidebar();
-            }
-        }
-
+        function abrirModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function fecharModal(id) { document.getElementById(id).classList.add('hidden'); }
         function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
 
-        // ==========================================
-        // 4. LÓGICA DO FORMULÁRIO DINÂMICO
-        // ==========================================
-        function toggleFormFields() {
-            const tipo = document.getElementById('form-tipo').value;
-            const container = document.getElementById('campos-dinamicos-container');
-            
-            ['campos-material', 'campos-administrativa', 'campos-pedagogica', 'campos-suporte_ti'].forEach(id => {
-                document.getElementById(id).classList.add('hidden');
-            });
-            
-            if (tipo) {
-                container.classList.remove('hidden');
-                document.getElementById(`campos-${tipo}`).classList.remove('hidden');
-            } else {
-                container.classList.add('hidden');
-            }
+        // ==============================================================
+        // FUNÇÕES ADMINISTRATIVAS (SALVAR DADOS NO LOCALSTORAGE)
+        // ==============================================================
+        function salvarAviso(e) {
+            e.preventDefault();
+            avisos.unshift({ titulo: document.getElementById('aviso-titulo').value, desc: document.getElementById('aviso-desc').value, data: "Hoje" });
+            setLocalData('ccp2_avisos', avisos);
+            fecharModal('modal-aviso'); e.target.reset(); renderizarTelas();
         }
 
+        function salvarArquivo(e) {
+            e.preventDefault();
+            arquivos.unshift({ nome: document.getElementById('arq-nome').value, cat: document.getElementById('arq-cat').value, link: document.getElementById('arq-link').value });
+            setLocalData('ccp2_arquivos', arquivos);
+            fecharModal('modal-arquivo'); e.target.reset(); renderizarTelas();
+        }
+
+        function salvarEvento(e) {
+            e.preventDefault();
+            eventos.unshift({ titulo: document.getElementById('ev-titulo').value, data: document.getElementById('ev-data').value });
+            setLocalData('ccp2_eventos', eventos);
+            fecharModal('modal-evento'); e.target.reset(); renderizarTelas();
+        }
+
+        // ==============================================================
+        // ENVIO DE CHAMADOS (FORMULÁRIO DO PROFESSOR)
+        // ==============================================================
         function updateTargetEmail() {
-            const unidade = document.getElementById('form-unidade').value;
-            const tipo = document.getElementById('form-tipo').value;
-            const indicador = document.getElementById('indicador-email');
+            const und = document.getElementById('form-unidade').value;
+            const tpo = document.getElementById('form-tipo').value;
+            const ind = document.getElementById('indicador-email');
+            if (!und || !tpo) { ind.classList.add('hidden'); return; }
             
-            if (!unidade || !tipo) { indicador.classList.add('hidden'); return; }
-
             const emailMap = {
-                brisa: { material: 'almoxarifado.brisa@ccp2.com.br', administrativa: 'secretaria.brisa@ccp2.com.br', pedagogica: 'coordenacao.brisa@ccp2.com.br', suporte_ti: 'suporte@ccp2.com.br' },
-                santissimo: { material: 'almoxarifado.santissimo@ccp2.com.br', administrativa: 'secretaria.santissimo@ccp2.com.br', pedagogica: 'coordenacao.santissimo@ccp2.com.br', suporte_ti: 'suporte@ccp2.com.br' },
-                santa_cruz: { material: 'almoxarifado.santacruz@ccp2.com.br', administrativa: 'secretaria.santacruz@ccp2.com.br', pedagogica: 'coordenacao.santacruz@ccp2.com.br', suporte_ti: 'suporte@ccp2.com.br' }
+                "Brisa": { "Material": 'almoxarifado.brisa@ccp2.com.br', "Administrativa": 'rh@ccp2.com.br', "Suporte TI": 'suporte@ccp2.com.br' },
+                "Santíssimo": { "Material": 'almoxarifado.santissimo@ccp2.com.br', "Administrativa": 'rh@ccp2.com.br', "Suporte TI": 'suporte@ccp2.com.br' },
+                "Santa Cruz": { "Material": 'almoxarifado.santacruz@ccp2.com.br', "Administrativa": 'rh@ccp2.com.br', "Suporte TI": 'suporte@ccp2.com.br' }
             };
-
-            document.getElementById('target-email-display').innerText = emailMap[unidade][tipo];
-            indicador.classList.remove('hidden');
+            document.getElementById('target-email-display').innerText = emailMap[und][tpo];
+            ind.classList.remove('hidden');
         }
 
-        // ==========================================
-        // 5. INTEGRAÇÃO REAL DE ENVIO DE DADOS (FETCH)
-        // ==========================================
-        async function handleFormSubmit(event) {
+        async function enviarChamado(event) {
             event.preventDefault();
-            
-            // Oculta alertas antigos
-            document.getElementById('sucesso-modal').classList.add('hidden');
-            document.getElementById('erro-modal').classList.add('hidden');
-            
             const btn = document.getElementById('btn-submit');
-            const textoOriginal = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando...';
-            btn.disabled = true;
-
-            const tipo = document.getElementById('form-tipo').value;
-            let msgFormatada = "";
-
-            if(tipo === 'material'){
-                msgFormatada = `Turma: ${document.getElementById('mat_turma').value} \nEvento: ${document.getElementById('mat_evento').value} \nDescrição: ${document.getElementById('mat_desc').value}`;
-            } else if(tipo === 'administrativa') {
-                msgFormatada = `Cargo: ${document.getElementById('adm_cargo').value} \nDescrição: ${document.getElementById('adm_desc').value}`;
-            } else if(tipo === 'pedagogica') {
-                msgFormatada = `Disciplina: ${document.getElementById('ped_disc').value} \nDescrição: ${document.getElementById('ped_desc').value}`;
-            } else if(tipo === 'suporte_ti') {
-                msgFormatada = `Equipamento: ${document.getElementById('ti_equip').value} \nDescrição do Erro: ${document.getElementById('ti_desc').value}`;
-            }
+            btn.innerHTML = 'Processando...'; btn.disabled = true;
 
             const dados = {
+                id: Date.now(),
+                data: new Date().toLocaleDateString('pt-BR'),
+                nomeProfessor: document.getElementById('user-name').innerText,
                 unidade: document.getElementById('form-unidade').value,
                 segmento: document.getElementById('form-segmento').value,
-                tipo: tipo,
+                tipo: document.getElementById('form-tipo').value,
                 emailDestino: document.getElementById('target-email-display').innerText,
-                nomeProfessor: document.getElementById('user-name').innerText,
-                mensagem: msgFormatada
+                mensagem: document.getElementById('form-desc').value,
+                status: 'Pendente'
             };
 
-            try {
-                if (URL_DO_SCRIPT && !URL_DO_SCRIPT.includes("COLE_AQUI")) {
-                    // Chamada Real para o Google Apps Script
-                    const response = await fetch(URL_DO_SCRIPT, {
-                        method: "POST",
-                        body: JSON.stringify(dados),
-                        headers: { "Content-Type": "text/plain;charset=utf-8" }
-                    });
+            // 1. Salva no Painel do Administrador IMEDIATAMENTE (LocalStorage)
+            chamados.unshift(dados);
+            setLocalData('ccp2_chamados', chamados);
+            renderizarTelas();
 
-                    if(response.ok) {
-                        finalizarFormulario(true);
-                    } else {
-                        finalizarFormulario(false);
-                    }
-                } else {
-                    // Modo Demonstração Rápida se a URL não foi inserida
-                    console.warn("⚠️ API do Google Apps Script não vinculada. Simulando envio para apresentação.");
-                    setTimeout(() => finalizarFormulario(true), 1500);
-                }
-            } catch (erro) {
-                console.error("Erro no envio:", erro);
-                finalizarFormulario(false);
-            } finally {
-                btn.innerHTML = textoOriginal;
-                btn.disabled = false;
+            // 2. Dispara e-mail real se a URL do Apps Script estiver configurada
+            if (URL_DO_SCRIPT && !URL_DO_SCRIPT.includes("COLE_AQUI")) {
+                fetch(URL_DO_SCRIPT, { method: "POST", body: JSON.stringify(dados) }).catch(e => console.log(e));
+            }
+
+            // Reseta form
+            setTimeout(() => {
+                btn.innerHTML = 'Emitir Chamado'; btn.disabled = false;
+                event.target.reset(); document.getElementById('indicador-email').classList.add('hidden');
+                alert("Chamado aberto com sucesso e enviado para a caixa da administração!");
+            }, 800);
+        }
+
+        // ==============================================================
+        // ATUALIZA STATUS DO CHAMADO (AÇÃO DO ADMIN)
+        // ==============================================================
+        function alterarStatus(idChamado) {
+            const index = chamados.findIndex(c => c.id === idChamado);
+            if(index > -1) {
+                // Ciclo de Status: Pendente -> Analisando -> Concluído
+                if(chamados[index].status === 'Pendente') chamados[index].status = 'Analisando';
+                else if(chamados[index].status === 'Analisando') chamados[index].status = 'Concluído';
+                else chamados[index].status = 'Pendente';
+                
+                setLocalData('ccp2_chamados', chamados);
+                renderizarTelas();
             }
         }
 
-        function finalizarFormulario(sucesso) {
-            if(sucesso) {
-                document.getElementById('sucesso-modal').classList.remove('hidden');
-                document.getElementById('form-solicitacao').reset();
-                toggleFormFields();
-                document.getElementById('indicador-email').classList.add('hidden');
-                setTimeout(() => document.getElementById('sucesso-modal').classList.add('hidden'), 5000);
-            } else {
-                document.getElementById('erro-modal').classList.remove('hidden');
-            }
+        function getStatusCor(status) {
+            if(status === 'Pendente') return 'bg-yellow-500/20 text-yellow-500';
+            if(status === 'Analisando') return 'bg-blue-500/20 text-blue-400';
+            return 'bg-emerald-500/20 text-emerald-400';
+        }
+
+        // ==============================================================
+        // RENDERIZAÇÃO DINÂMICA DA TELA
+        // ==============================================================
+        function renderizarTelas() {
+            // Renderiza Avisos
+            document.getElementById('lista-avisos').innerHTML = avisos.map(a => `
+                <div class="flex gap-5 p-5 rounded-2xl bg-blue-50/50 dark:bg-slate-800/50 border border-blue-100 dark:border-slate-700">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-bullhorn"></i></div>
+                    <div><h4 class="font-bold text-slate-900 dark:text-white">${a.titulo}</h4><p class="text-sm text-slate-500 dark:text-slate-400 mt-1">${a.desc}</p><span class="text-[10px] font-bold text-slate-400 uppercase mt-3 inline-block">${a.data}</span></div>
+                </div>`).join('');
+
+            // Renderiza Arquivos
+            document.getElementById('lista-arquivos').innerHTML = arquivos.map(a => `
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
+                    <td class="p-5 flex items-center gap-4 font-medium"><i class="fa-solid fa-file-pdf text-red-600 text-xl bg-red-50 dark:bg-slate-800 p-2 rounded-lg"></i> ${a.nome}</td>
+                    <td class="p-5">${a.cat}</td>
+                    <td class="p-5 text-right"><a href="${a.link}" target="_blank" class="text-blue-500 hover:underline font-bold text-xs"><i class="fa-brands fa-google-drive mr-1"></i> Abrir Drive</a></td>
+                </tr>`).join('');
+
+            // Renderiza Eventos
+            document.getElementById('lista-eventos').innerHTML = eventos.map(e => {
+                const date = new Date(e.data);
+                return `<div class="bg-white dark:bg-darkcard p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-darkborder flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-2xl bg-primary text-white flex flex-col items-center justify-center"><span class="text-xs uppercase font-bold opacity-80">${date.toLocaleString('pt-br',{month:'short'})}</span><span class="text-xl font-black">${date.getDate()+1}</span></div>
+                    <div><h4 class="font-bold text-slate-900 dark:text-white">${e.titulo}</h4><p class="text-xs text-slate-500 mt-1">Evento Acadêmico</p></div>
+                </div>`}).join('');
+
+            // Renderiza Chamados no Painel Admin
+            document.getElementById('tabela-chamados-admin').innerHTML = chamados.map(c => `
+                <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition">
+                    <td class="p-4">${c.data}</td>
+                    <td class="p-4 font-medium text-white">${c.nomeProfessor} <span class="text-xs text-slate-500 block">${c.unidade}</span></td>
+                    <td class="p-4">${c.tipo}</td>
+                    <td class="p-4 text-xs truncate max-w-[150px]">${c.mensagem}</td>
+                    <td class="p-4 text-center cursor-pointer" onclick="alterarStatus(${c.id})"><span class="${getStatusCor(c.status)} px-2 py-1 rounded-md text-xs font-bold hover:brightness-110">${c.status}</span></td>
+                </tr>`).join('');
+                
+            document.getElementById('contador-pendentes').innerText = chamados.filter(c => c.status === 'Pendente').length + " Pendentes";
         }
     </script>
 </body>
